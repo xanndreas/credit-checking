@@ -20,6 +20,14 @@ class DealerInformation extends Model implements HasMedia
         'id_photos',
     ];
 
+    public const DOWN_PAYMENT_SELECT = [
+        '15' => '15%',
+        '25' => '25%',
+        '30' => '30%',
+        '35' => '35%',
+        'Other' => 'Other',
+    ];
+
     protected $dates = [
         'created_at',
         'updated_at',
@@ -43,6 +51,9 @@ class DealerInformation extends Model implements HasMedia
         'debtor_phone',
         'remarks',
         'debtor_information_id',
+        'dealer_text',
+        'brand_text',
+        'down_payment_text',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -88,9 +99,9 @@ class DealerInformation extends Model implements HasMedia
     {
         $files = $this->getMedia('id_photos');
         $files->each(function ($item) {
-            $item->url       = $item->getUrl();
+            $item->url = $item->getUrl();
             $item->thumbnail = $item->getUrl('thumb');
-            $item->preview   = $item->getUrl('preview');
+            $item->preview = $item->getUrl('preview');
         });
 
         return $files;

@@ -20,6 +20,9 @@ class CreateDealerInformationsTable extends Migration
             $table->float('effective_rates', 15, 2);
             $table->string('debtor_phone');
             $table->string('remarks')->nullable();
+            $table->string('dealer_text')->nullable();
+            $table->string('brand_text')->nullable();
+            $table->string('down_payment_text')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

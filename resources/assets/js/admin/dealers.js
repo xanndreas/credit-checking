@@ -15,7 +15,7 @@ $(function () {
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'aliases', name: 'aliases'},
-            {data: 'actions', name: 'Actions'}
+            {data: 'actions', name: 'Actions', orderable: false, searchable: false}
         ],
         orderCellsTop: true,
         order: [[2, 'desc']],

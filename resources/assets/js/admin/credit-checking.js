@@ -18,6 +18,10 @@ $(function () {
             });
         });
     }
+
+    $('.brand_text-container').hide();
+    $('.dealer_text-container').hide();
+    $('.down_payment_text-container').hide();
 });
 
 (function () {
@@ -48,6 +52,35 @@ $(function () {
         }
     }
 
+    let dealers = $('#dealer_id'),
+        brands = $('#brand_id'),
+        downPayment = $('#down_payment'),
+        dealerText = $('.dealer_text-container'),
+        brandsText = $('.brand_text-container'),
+        downPaymentText = $('.down_payment_text-container');
 
+    downPayment.on("change", function (e) {
+        if (downPayment.select2('data').pop().text === 'Other') {
+            downPaymentText.show()
+        } else {
+            downPaymentText.hide()
+        }
+    });
+
+    dealers.on("change", function (e) {
+        if (dealers.select2('data').pop().text === 'Other') {
+            dealerText.show()
+        } else {
+            dealerText.hide()
+        }
+    });
+
+    brands.on("change", function (e) {
+        if (brands.select2('data').pop().text === 'Other') {
+            brandsText.show()
+        } else {
+            brandsText.hide()
+        }
+    });
 
 })();

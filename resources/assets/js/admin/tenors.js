@@ -14,7 +14,7 @@ $(function () {
             {data: 'placeholder', name: 'placeholder'},
             {data: 'id', name: 'id'},
             {data: 'year', name: 'year'},
-            {data: 'actions', name: 'Actions'}
+            {data: 'actions', name: 'Actions', orderable: false, searchable: false}
         ],
         orderCellsTop: true,
         order: [[2, 'desc']],

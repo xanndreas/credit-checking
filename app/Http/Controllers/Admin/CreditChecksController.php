@@ -125,28 +125,24 @@ class CreditChecksController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.dealerInformations.index');
+        return view('admin.creditCheck.index');
     }
 
     public function create()
     {
         abort_if(Gate::denies('credit_check_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $dealers = Dealer::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $dealers = Dealer::pluck('name', 'id')->push('Other');;
 
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $products = Product::pluck('name', 'id');
 
-        $brands = Brand::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $brands = Brand::pluck('name', 'id')->push('Other');
 
-        $insurances = Insurance::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $insurances = Insurance::pluck('name', 'id');
 
-        $tenors = Tenor::pluck('year', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $tenors = Tenor::pluck('year', 'id');
 
-        $debtor_informations = DebtorInformation::pluck('debtor_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $auto_planner_informations = AutoPlanner::pluck('type', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.creditCheck.create', compact('brands', 'dealers', 'debtor_informations', 'auto_planner_informations', 'insurances', 'products', 'tenors'));
+        return view('admin.creditCheck.create', compact('brands', 'dealers', 'insurances', 'products', 'tenors'));
     }
 
     public function store(StoreCreditCheckRequest $request)
@@ -160,47 +156,59 @@ class CreditChecksController extends Controller
             ]
         ));
 
-        $debtorInformationStore = AutoPlanner::create(array_merge($request->only(
-            [
-                'debtor_name',
-                'id_type',
-                'id_number',
-                'partner_name',
-                'guarantor_id_number',
-                'guarantor_name',
-            ]
-        ),
-            [
-                'auto_planner_information_id' => $autoPlannerStore->id
-            ]
-        ));
+        if ($autoPlannerStore) {
+            $debtorInformationStore = DebtorInformation::create(array_merge($request->only(
+                [
+                    'debtor_name',
+                    'id_type',
+                    'id_number',
+                    'partner_name',
+                    'guarantor_id_number',
+                    'guarantor_name',
+                ]
+            ),
+                [
+                    'auto_planner_information_id' => $autoPlannerStore->id
+                ]
+            ));
 
-        $dealerInformationStore = DealerInformation::create(array_merge($request->only(
-            [
-                'dealer_id',
-                'sales_name',
-                'product_id',
-                'brand_id',
-                'models',
-                'number_of_units',
-                'otr',
-                'debt_principal',
-                'insurance_id',
-                'down_payment',
-                'tenors_id',
-                'addm_addb',
-                'effective_rates',
-                'debtor_phone',
-                'remarks',
-            ]
-        )),
-            [
-                'debtor_information_id' => $debtorInformationStore->id
-            ]
-        );
+            if ($debtorInformationStore) {
 
-        foreach ($request->input('id_photos', []) as $file) {
-            $dealerInformationStore->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('id_photos');
+                $findBrands = Brand::where('id', $request->brand_id)->first();
+                $findDealers = Dealer::where('id', $request->dealer_id)->first();
+
+                $dealerInformationStore = DealerInformation::create(array_merge($request->only(
+                    [
+                        'sales_name',
+                        'product_id',
+                        'models',
+                        'number_of_units',
+                        'otr',
+                        'debt_principal',
+                        'insurance_id',
+                        'down_payment',
+                        'tenors_id',
+                        'addm_addb',
+                        'effective_rates',
+                        'debtor_phone',
+                        'remarks',
+                    ]
+                ),
+                    [
+                        'debtor_information_id' => $debtorInformationStore->id,
+                        'dealer_id' => $request->dealer_text == null ? ($findDealers ? $request->dealer_id : null) : null,
+                        'brand_id' => $request->brand_text == null ? ($findBrands ? $request->brand_id : null) : null,
+                        'down_payment' => $request->down_payment_text == null ? $request->down_payment : null,
+                        'dealer_text' => $request->dealer_text,
+                        'brand_text' => $request->brand_text,
+                        'down_payment_text' => $request->down_payment_text,
+                    ]
+                ));
+
+                foreach ($request->input('id_photos', []) as $file) {
+                    $dealerInformationStore->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('id_photos');
+                }
+            }
         }
 
         return redirect()->route('admin.home');

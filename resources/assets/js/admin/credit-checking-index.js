@@ -9,13 +9,16 @@ $(function () {
         retrieve: true,
         aaSorting: [],
 
-        ajax: "/admin/products",
+        ajax: "/admin/users",
         columns: [
             {data: 'placeholder', name: 'placeholder'},
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'aliases', name: 'aliases'},
-            {data: 'actions', name: 'Actions', orderable: false, searchable: false}
+            {data: 'email', name: 'email'},
+            {data: 'email_verified_at', name: 'email_verified_at'},
+            {data: 'approved', name: 'approved'},
+            {data: 'roles', name: 'roles.title'},
+            {data: 'actions', name: 'Actions'}
         ],
         orderCellsTop: true,
         order: [[2, 'desc']],
@@ -107,11 +110,11 @@ $(function () {
                 ]
             },
             {
-                text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Add New Product</span>',
+                text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Add New User</span>',
                 className: 'add-new btn btn-primary',
                 attr: {
                     'data-bs-toggle': 'offcanvas',
-                    'data-bs-target': '#offcanvasAddProduct'
+                    'data-bs-target': '#offcanvasAddUser'
                 }
             }
         ],
@@ -129,41 +132,48 @@ $(function () {
         ]
 
     };
-    let table = $('.datatable-Product').DataTable(dtOverrideGlobals);
+    let table = $('.datatable-User').DataTable(dtOverrideGlobals);
 
     $('a[data-toggle="tab"]').on('shown.bs.tab click', function (e) {
         $($.fn.dataTable.tables(true)).DataTable()
             .columns.adjust();
     });
 
-    $('.datatable-Product tbody').on('click', 'td:not(:first-child, :last-child)', (event) => {
+    $('.datatable-User tbody').on('click', 'td:not(:first-child, :last-child)', (event) => {
         let row = table.row(event.currentTarget).data();
 
-        $('#submitAddProduct').attr('data-id', row.id);
+        $('#submitAddUser').attr('data-id', row.id);
         $('input[name="name"]').val(row.name);
-        $('input[name="aliases"]').val(row.aliases);
+        $('input[name="email"]').val(row.email);
 
-        let canvasSelector = document.getElementById('offcanvasAddProduct')
+        if (row.approved.includes('checked'))
+            $('input[name="approved"]').prop('checked', true);
+
+        $('select[name="roles[]"]').val(row.role_ids).trigger('change');
+
+        let canvasSelector = document.getElementById('offcanvasAddUser')
         canvasSelector.addEventListener('hidden.bs.offcanvas', function () {
-            $('#addNewProductForm').trigger("reset");
-            $('#submitAddProduct').attr('data-id', null);
+            $('#addNewUserForm').trigger("reset");
+
+            $('select[name="roles[]"]').val('').trigger('change')
+            $('#submitAddUser').attr('data-id', null);
         });
 
-        let bsOffCanvasAddProduct = new bootstrap.Offcanvas(canvasSelector)
-        bsOffCanvasAddProduct.show();
+        let bsOffCanvasAddUser = new bootstrap.Offcanvas(canvasSelector)
+        bsOffCanvasAddUser.show();
     });
 
-    $('#submitAddProduct').on('click', function () {
+    $('#submitAddUser').on('click', function () {
         let savedIds = $(this).attr('data-id'),
             savesForm = $(this).parent(),
             hiddenPut = $('input[name="_method"]');
 
         if (savedIds === ''|| typeof savedIds === 'undefined') {
             hiddenPut.prop('disabled', true);
-            savesForm.attr('action', "/admin/products").submit();
+            savesForm.attr('action', "/admin/users").submit();
         } else {
             hiddenPut.prop('disabled', false);
-            savesForm.attr('action', "/admin/products/" + savedIds).submit();
+            savesForm.attr('action', "/admin/users/" + savedIds).submit();
         }
     });
 });

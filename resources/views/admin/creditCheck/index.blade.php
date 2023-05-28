@@ -24,7 +24,7 @@
 @endsection
 
 @section('page-script')
-    <script src="{{asset('assets/js/admin/users.js')}}"></script>
+    <script src="{{asset('assets/js/admin/credit-checking-index.js')}}"></script>
     <script src="{{asset('assets/js/forms-selects.js')}}"></script>
 @endsection
 
@@ -68,7 +68,6 @@
                 </thead>
             </table>
         </div>
-        @include('admin/users/form')
     </div>
 @endsection
 

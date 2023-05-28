@@ -18,7 +18,7 @@ $(function () {
             {data: 'email_verified_at', name: 'email_verified_at'},
             {data: 'approved', name: 'approved'},
             {data: 'roles', name: 'roles.title'},
-            {data: 'actions', name: 'Actions'}
+            {data: 'actions', name: 'Actions', orderable: false, searchable: false}
         ],
         orderCellsTop: true,
         order: [[2, 'desc']],

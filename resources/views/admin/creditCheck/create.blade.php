@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/bs-stepper/bs-stepper.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet"/>
 
 @endsection
 
@@ -54,7 +54,9 @@
                 @if(isset($dealerInformation) && $dealerInformation->id_photos)
                 let files = {!! json_encode($dealerInformation->id_photos) !!}
 
-                for(let i in files)
+                for(let
+                i in files
+            )
                 {
                     let file = files[i]
                     this.options.addedfile.call(this, file)
@@ -141,7 +143,8 @@
 
                 <div class="bs-stepper-content">
                     <!-- Account Details -->
-                    <form enctype="multipart/form-data" id="basic-information-form" novalidate>
+                    <form enctype="multipart/form-data" id="basic-information-form" action="{{ route('admin.credit-checks.store') }}" method="post" novalidate>
+                        @csrf
                         <div id="basic-information" class="content">
                             <div class="content-header mb-3">
                                 <h6 class="mb-0">Auto Planner</h6>
@@ -292,12 +295,14 @@
                                 <small>Enter Loan Information.</small>
                             </div>
                             <div class="row g-3">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <label class="required"
                                            for="dealer_id">{{ trans('cruds.dealerInformation.fields.dealer') }}</label>
                                     <select
                                         class="form-control select2 {{ $errors->has('dealer') ? 'is-invalid' : '' }}"
                                         name="dealer_id" id="dealer_id" required>
+                                        <option value
+                                                disabled {{ old('dealer_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                                         @foreach($dealers as $id => $entry)
                                             <option
                                                 value="{{ $id }}" {{ old('dealer_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
@@ -306,6 +311,19 @@
                                     @if($errors->has('dealer'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('dealer') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12 dealer_text-container">
+                                    <label class="required"
+                                           for="dealer_text">{{ trans('cruds.dealerInformation.fields.dealer_text') }}</label>
+                                    <input class="form-control {{ $errors->has('dealer_text') ? 'is-invalid' : '' }}"
+                                           type="text" name="dealer_text" id="dealer_text"
+                                           value="{{ old('dealer_text', '') }}"
+                                           required>
+                                    @if($errors->has('dealer_text'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('dealer_text') }}
                                         </div>
                                     @endif
                                 </div>
@@ -328,7 +346,10 @@
                                     <select
                                         class="form-control select2 {{ $errors->has('product') ? 'is-invalid' : '' }}"
                                         name="product_id" id="product_id" required>
-                                        @foreach($products as $id => $entry)
+                                        <option value
+                                                disabled {{ old('product_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+
+                                    @foreach($products as $id => $entry)
                                             <option
                                                 value="{{ $id }}" {{ old('product_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                                         @endforeach
@@ -339,12 +360,15 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <label class="required"
                                            for="brand_id">{{ trans('cruds.dealerInformation.fields.brand') }}</label>
                                     <select class="form-control select2 {{ $errors->has('brand') ? 'is-invalid' : '' }}"
                                             name="brand_id" id="brand_id" required>
-                                        @foreach($brands as $id => $entry)
+                                        <option value
+                                                disabled {{ old('brand_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+
+                                    @foreach($brands as $id => $entry)
                                             <option
                                                 value="{{ $id }}" {{ old('brand_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                                         @endforeach
@@ -352,6 +376,18 @@
                                     @if($errors->has('brand'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('brand') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12 brand_text-container">
+                                    <label class="required"
+                                           for="brand_text">{{ trans('cruds.dealerInformation.fields.brand_text') }}</label>
+                                    <input class="form-control {{ $errors->has('brand_text') ? 'is-invalid' : '' }}"
+                                           type="text"
+                                           name="brand_text" id="brand_text" value="{{ old('brand_text', '') }}" required>
+                                    @if($errors->has('brand_text'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('brand_text') }}
                                         </div>
                                     @endif
                                 </div>
@@ -410,6 +446,8 @@
                                     <select
                                         class="form-control select2 {{ $errors->has('insurance') ? 'is-invalid' : '' }}"
                                         name="insurance_id" id="insurance_id" required>
+                                        <option value
+                                                disabled {{ old('insurance_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                                         @foreach($insurances as $id => $entry)
                                             <option
                                                 value="{{ $id }}" {{ old('insurance_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
@@ -422,24 +460,15 @@
                                     @endif
                                 </div>
                                 <div class="col-sm-6">
-                                    <label
-                                        for="down_payment">{{ trans('cruds.dealerInformation.fields.down_payment') }}</label>
-                                    <input class="form-control {{ $errors->has('down_payment') ? 'is-invalid' : '' }}"
-                                           type="text" name="down_payment" id="down_payment"
-                                           value="{{ old('down_payment', '') }}">
-                                    @if($errors->has('down_payment'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('down_payment') }}
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="col-sm-6">
                                     <label class="required"
                                            for="tenors_id">{{ trans('cruds.dealerInformation.fields.tenors') }}</label>
                                     <select
                                         class="form-control select2 {{ $errors->has('tenors') ? 'is-invalid' : '' }}"
                                         name="tenors_id" id="tenors_id" required>
-                                        @foreach($tenors as $id => $entry)
+                                        <option value
+                                                disabled {{ old('tenors_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+
+                                    @foreach($tenors as $id => $entry)
                                             <option
                                                 value="{{ $id }}" {{ old('tenors_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                                         @endforeach
@@ -447,6 +476,39 @@
                                     @if($errors->has('tenors'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('tenors') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12">
+                                    <label
+                                        for="down_payment">{{ trans('cruds.dealerInformation.fields.down_payment') }}</label>
+
+                                    <select
+                                        class="form-control select2 {{ $errors->has('down_payment') ? 'is-invalid' : '' }}"
+                                        name="down_payment" id="down_payment" required>
+                                        <option value
+                                                disabled {{ old('down_payment', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                                        @foreach(App\Models\DealerInformation::DOWN_PAYMENT_SELECT as $key => $label)
+                                            <option
+                                                value="{{ $key }}" {{ old('down_payment', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                                        @endforeach
+                                    </select>
+                                    @if($errors->has('down_payment'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('down_payment') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12 down_payment_text-container">
+                                    <label class="required"
+                                           for="down_payment_text">{{ trans('cruds.dealerInformation.fields.down_payment_text') }}</label>
+                                    <input class="form-control {{ $errors->has('down_payment_text') ? 'is-invalid' : '' }}"
+                                           type="text" name="down_payment_text" id="down_payment_text"
+                                           value="{{ old('down_payment_text', '') }}"
+                                           required>
+                                    @if($errors->has('down_payment_text'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('down_payment_text') }}
                                         </div>
                                     @endif
                                 </div>
@@ -489,6 +551,16 @@
                                     @endif
                                 </div>
                                 <div class="col-sm-6">
+                                    <label for="remarks">{{ trans('cruds.dealerInformation.fields.remarks') }}</label>
+                                    <input class="form-control {{ $errors->has('remarks') ? 'is-invalid' : '' }}"
+                                           type="text" name="remarks" id="remarks" value="{{ old('remarks', '') }}">
+                                    @if($errors->has('remarks'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('remarks') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12">
                                     <label class="required"
                                            for="id_photos">{{ trans('cruds.dealerInformation.fields.id_photos') }}</label>
                                     <div class="needsclick dropzone {{ $errors->has('id_photos') ? 'is-invalid' : '' }}"
@@ -497,16 +569,6 @@
                                     @if($errors->has('id_photos'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('id_photos') }}
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="remarks">{{ trans('cruds.dealerInformation.fields.remarks') }}</label>
-                                    <input class="form-control {{ $errors->has('remarks') ? 'is-invalid' : '' }}"
-                                           type="text" name="remarks" id="remarks" value="{{ old('remarks', '') }}">
-                                    @if($errors->has('remarks'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('remarks') }}
                                         </div>
                                     @endif
                                 </div>
