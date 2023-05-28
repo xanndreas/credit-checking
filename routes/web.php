@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     Route::resource('tenors', 'TenorsController');
 
+    Route::resource('credit-checks', 'CreditChecksController');
+
 //
 //
 //    Route::resource('auto-planners', 'AutoPlannerController');

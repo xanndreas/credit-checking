@@ -71,6 +71,26 @@ return [
         'title'          => 'Input Parameters',
         'title_singular' => 'Input Parameter',
     ],
+    'creditChecking' => [
+        'title'          => 'Credit Checking',
+        'title_singular' => 'Credit Checking',
+    ],
+    'creditCheck' => [
+        'title'          => 'Credit Check',
+        'title_singular' => 'Credit Check',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'name'              => 'Name',
+            'name_helper'       => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+        ],
+    ],
     'respondent' => [
         'title'          => 'Respondent',
         'title_singular' => 'Respondent',

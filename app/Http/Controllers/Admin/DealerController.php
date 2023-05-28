@@ -31,7 +31,7 @@ class DealerController extends Controller
                 $deleteGate    = 'dealer_delete';
                 $crudRoutePart = 'dealers';
 
-                return view('partials.datatablesActions', compact(
+                return view('_partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',

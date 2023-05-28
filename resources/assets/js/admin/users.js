@@ -168,7 +168,7 @@ $(function () {
             savesForm = $(this).parent(),
             hiddenPut = $('input[name="_method"]');
 
-        if (savedIds === '') {
+        if (savedIds === ''|| typeof savedIds === 'undefined') {
             hiddenPut.prop('disabled', true);
             savesForm.attr('action', "/admin/users").submit();
         } else {

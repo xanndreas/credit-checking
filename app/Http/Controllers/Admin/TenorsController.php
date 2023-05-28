@@ -31,7 +31,7 @@ class TenorsController extends Controller
                 $deleteGate    = 'tenor_delete';
                 $crudRoutePart = 'tenors';
 
-                return view('partials.datatablesActions', compact(
+                return view('_partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',

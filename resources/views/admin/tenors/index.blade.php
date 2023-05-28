@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'User List - Pages')
+@section('title', 'Tenor List - Pages')
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
@@ -24,51 +24,39 @@
 @endsection
 
 @section('page-script')
-    <script src="{{asset('assets/js/admin/users.js')}}"></script>
+    <script src="{{asset('assets/js/admin/tenors.js')}}"></script>
     <script src="{{asset('assets/js/forms-selects.js')}}"></script>
 @endsection
 
 
 @section('content')
 
-    <!-- Users List Table -->
+    <!-- Tenors List Table -->
     <div class="card">
         <div class="card-header border-bottom">
-            <h5 class="card-title mb-3">Users</h5>
+            <h5 class="card-title mb-3">Tenors</h5>
         </div>
         <div class="card-datatable table-responsive">
-            <table class="datatables-users table border-top table-hover datatable-User">
+            <table class="datatables-tenors table border-top table-hover datatable-Tenor">
                 <thead>
                 <tr>
                     <th width="10">
 
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.id') }}
+                        {{ trans('cruds.tenor.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.name') }}
+                        {{ trans('cruds.tenor.fields.year') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.user.fields.email') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.user.fields.email_verified_at') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.user.fields.approved') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.user.fields.roles') }}
-                    </th>
-                    <th>
+                    <th class="w-px-18">
                         {{ trans('global.actions') }}
                     </th>
                 </tr>
                 </thead>
             </table>
         </div>
-        @include('admin/users/form')
+        @include('admin/tenors/form')
     </div>
 @endsection
 

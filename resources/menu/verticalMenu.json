@@ -9,6 +9,17 @@
             "icon": "menu-icon tf-icons ti ti-smart-home",
             "slug": "admin.home"
         },
+
+        {
+            "menuHeader": "cruds.creditChecking.title",
+            "permission": "credit_checking_access"
+        },
+        {
+            "name": "cruds.creditCheck.title",
+            "icon": "menu-icon tf-icons ti ti-user",
+            "slug": "admin.credit-checks.index",
+            "permission": "credit_check_access"
+        },
         {
             "menuHeader": "global.user_management",
             "permission": "user_management_access"
@@ -30,6 +41,46 @@
             "icon": "menu-icon tf-icons ti ti-link",
             "slug": "admin.roles.index",
             "permission": "role_access"
+        },
+        {
+            "menuHeader": "cruds.inputParameter.title",
+            "permission": "input_parameter_access"
+        },
+        {
+            "name": "cruds.dealer.title",
+            "icon": "menu-icon tf-icons ti ti-car",
+            "slug": "admin.dealers.index",
+            "permission": "dealer_access"
+        },
+        {
+            "name": "cruds.product.title",
+            "icon": "menu-icon tf-icons ti ti-briefcase",
+            "slug": "admin.products.index",
+            "permission": "product_access"
+        },
+        {
+            "name": "cruds.brand.title",
+            "icon": "menu-icon tf-icons ti ti-cup",
+            "slug": "admin.brands.index",
+            "permission": "brand_access"
+        },
+        {
+            "name": "cruds.year.title",
+            "icon": "menu-icon tf-icons ti ti-calendar",
+            "slug": "admin.years.index",
+            "permission": "year_access"
+        },
+        {
+            "name": "cruds.insurance.title",
+            "icon": "menu-icon tf-icons ti ti-flag",
+            "slug": "admin.insurances.index",
+            "permission": "insurance_access"
+        },
+        {
+            "name": "cruds.tenor.title",
+            "icon": "menu-icon tf-icons ti ti-lock",
+            "slug": "admin.tenors.index",
+            "permission": "tenor_access"
         }
     ]
 }

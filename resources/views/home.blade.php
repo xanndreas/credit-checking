@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'E-commerce')
+@section('title', 'Credit Checking')
 
 
 @section('vendor-style')
@@ -22,10 +22,9 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-7">
                         <div class="card-body text-nowrap">
-                            <h5 class="card-title mb-0">Congratulations John! 🎉</h5>
-                            <p class="mb-2">Best seller of the month</p>
-                            <h4 class="text-primary mb-1">$48.9k</h4>
-                            <a href="javascript:;" class="btn btn-primary">View Sales</a>
+                            <h5 class="card-title mb-0">Here available task</h5>
+                            <p class="mb-2">Click button below to start credit checking</p>
+                            <a href="javascript:;" class="btn btn-primary">Start </a>
                         </div>
                     </div>
                     <div class="col-5 text-center text-sm-left">

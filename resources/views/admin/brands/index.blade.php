@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'User List - Pages')
+@section('title', 'Brand List - Pages')
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
@@ -24,51 +24,42 @@
 @endsection
 
 @section('page-script')
-    <script src="{{asset('assets/js/admin/users.js')}}"></script>
+    <script src="{{asset('assets/js/admin/brands.js')}}"></script>
     <script src="{{asset('assets/js/forms-selects.js')}}"></script>
 @endsection
 
 
 @section('content')
 
-    <!-- Users List Table -->
+    <!-- Brands List Table -->
     <div class="card">
         <div class="card-header border-bottom">
-            <h5 class="card-title mb-3">Users</h5>
+            <h5 class="card-title mb-3">Brands</h5>
         </div>
         <div class="card-datatable table-responsive">
-            <table class="datatables-users table border-top table-hover datatable-User">
+            <table class="datatables-brands table border-top table-hover datatable-Brand">
                 <thead>
                 <tr>
                     <th width="10">
 
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.id') }}
+                        {{ trans('cruds.brand.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.name') }}
+                        {{ trans('cruds.brand.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.email') }}
+                        {{ trans('cruds.brand.fields.aliases') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.user.fields.email_verified_at') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.user.fields.approved') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.user.fields.roles') }}
-                    </th>
-                    <th>
+                    <th class="w-px-18">
                         {{ trans('global.actions') }}
                     </th>
                 </tr>
                 </thead>
             </table>
         </div>
-        @include('admin/users/form')
+        @include('admin/brands/form')
     </div>
 @endsection
 

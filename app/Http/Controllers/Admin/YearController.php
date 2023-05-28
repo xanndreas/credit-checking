@@ -31,7 +31,7 @@ class YearController extends Controller
                 $deleteGate    = 'year_delete';
                 $crudRoutePart = 'years';
 
-                return view('partials.datatablesActions', compact(
+                return view('_partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',

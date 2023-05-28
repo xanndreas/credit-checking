@@ -31,7 +31,7 @@ class InsuranceController extends Controller
                 $deleteGate    = 'insurance_delete';
                 $crudRoutePart = 'insurances';
 
-                return view('partials.datatablesActions', compact(
+                return view('_partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',

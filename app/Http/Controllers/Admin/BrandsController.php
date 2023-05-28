@@ -31,7 +31,7 @@ class BrandsController extends Controller
                 $deleteGate    = 'brand_delete';
                 $crudRoutePart = 'brands';
 
-                return view('partials.datatablesActions', compact(
+                return view('_partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',

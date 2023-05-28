@@ -274,6 +274,22 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 66,
                 'title' => 'dashboard_access',
             ],
+            [
+                'id'    => 67,
+                'title' => 'credit_checking_access',
+            ],
+            [
+                'id'    => 68,
+                'title' => 'credit_check_access',
+            ],
+            [
+                'id'    => 69,
+                'title' => 'credit_check_create',
+            ],
+            [
+                'id'    => 70,
+                'title' => 'credit_check_show',
+            ],
         ];
 
         Permission::insert($permissions);

@@ -20,7 +20,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
-class CreditCheckController extends Controller
+class CreditChecksController extends Controller
 {
     use MediaUploadingTrait;
 
@@ -41,7 +41,7 @@ class CreditCheckController extends Controller
                 $deleteGate    = 'dealer_information_delete';
                 $crudRoutePart = 'dealer-informations';
 
-                return view('partials.datatablesActions', compact(
+                return view('_partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',
