@@ -1,0 +1,35 @@
+{
+    "menu": [
+        {
+            "menuHeader": "global.dashboard",
+            "permission": "user_management_access"
+        },
+        {
+            "name": "global.home",
+            "icon": "menu-icon tf-icons ti ti-smart-home",
+            "slug": "admin.home"
+        },
+        {
+            "menuHeader": "global.user_management",
+            "permission": "user_management_access"
+        },
+        {
+            "name": "cruds.user.title",
+            "icon": "menu-icon tf-icons ti ti-user",
+            "slug": "admin.users.index",
+            "permission": "user_access"
+        },
+        {
+            "name": "cruds.permission.title",
+            "icon": "menu-icon tf-icons ti ti-lock",
+            "slug": "admin.permissions.index",
+            "permission": "permission_access"
+        },
+        {
+            "name": "cruds.role.title",
+            "icon": "menu-icon tf-icons ti ti-link",
+            "slug": "admin.roles.index",
+            "permission": "role_access"
+        }
+    ]
+}
