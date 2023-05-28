@@ -9,15 +9,15 @@ $(function () {
         retrieve: true,
         aaSorting: [],
 
-        ajax: "/admin/users",
+        ajax: "/admin/credit-checks",
         columns: [
             {data: 'placeholder', name: 'placeholder'},
             {data: 'id', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
-            {data: 'email_verified_at', name: 'email_verified_at'},
-            {data: 'approved', name: 'approved'},
-            {data: 'roles', name: 'roles.title'},
+            {data: 'dealer_name', name: 'dealer_name'},
+            {data: 'sales_name', name: 'sales_name'},
+            {data: 'product_name', name: 'product_name'},
+            {data: 'brand_name', name: 'brand_name'},
+            {data: 'models', name: 'models'},
             {data: 'actions', name: 'Actions'}
         ],
         orderCellsTop: true,
@@ -36,7 +36,7 @@ $(function () {
                 display: $.fn.dataTable.Responsive.display.modal({
                     header: function (row) {
                         var data = row.data();
-                        return 'Details of ' + data['name'];
+                        return 'Details of #' + data['id'];
                     }
                 }),
                 type: 'column',
@@ -108,14 +108,6 @@ $(function () {
                         className: 'dropdown-item',
                     }
                 ]
-            },
-            {
-                text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Add New User</span>',
-                className: 'add-new btn btn-primary',
-                attr: {
-                    'data-bs-toggle': 'offcanvas',
-                    'data-bs-target': '#offcanvasAddUser'
-                }
             }
         ],
         columnDefs: [
@@ -132,48 +124,15 @@ $(function () {
         ]
 
     };
-    let table = $('.datatable-User').DataTable(dtOverrideGlobals);
+    let table = $('.datatable-CreditCheck').DataTable(dtOverrideGlobals);
+
+    $('.datatable-CreditCheck tbody').on('click', 'td:not(:first-child, :last-child)', (event) => {
+        let row = table.row(event.currentTarget).data();
+        window.location.href = '/admin/credit-checks/' + row.id;
+    });
 
     $('a[data-toggle="tab"]').on('shown.bs.tab click', function (e) {
         $($.fn.dataTable.tables(true)).DataTable()
             .columns.adjust();
-    });
-
-    $('.datatable-User tbody').on('click', 'td:not(:first-child, :last-child)', (event) => {
-        let row = table.row(event.currentTarget).data();
-
-        $('#submitAddUser').attr('data-id', row.id);
-        $('input[name="name"]').val(row.name);
-        $('input[name="email"]').val(row.email);
-
-        if (row.approved.includes('checked'))
-            $('input[name="approved"]').prop('checked', true);
-
-        $('select[name="roles[]"]').val(row.role_ids).trigger('change');
-
-        let canvasSelector = document.getElementById('offcanvasAddUser')
-        canvasSelector.addEventListener('hidden.bs.offcanvas', function () {
-            $('#addNewUserForm').trigger("reset");
-
-            $('select[name="roles[]"]').val('').trigger('change')
-            $('#submitAddUser').attr('data-id', null);
-        });
-
-        let bsOffCanvasAddUser = new bootstrap.Offcanvas(canvasSelector)
-        bsOffCanvasAddUser.show();
-    });
-
-    $('#submitAddUser').on('click', function () {
-        let savedIds = $(this).attr('data-id'),
-            savesForm = $(this).parent(),
-            hiddenPut = $('input[name="_method"]');
-
-        if (savedIds === ''|| typeof savedIds === 'undefined') {
-            hiddenPut.prop('disabled', true);
-            savesForm.attr('action', "/admin/users").submit();
-        } else {
-            hiddenPut.prop('disabled', false);
-            savesForm.attr('action', "/admin/users/" + savedIds).submit();
-        }
     });
 });

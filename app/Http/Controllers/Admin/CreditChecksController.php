@@ -38,10 +38,10 @@ class CreditChecksController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'dealer_information_show';
-                $editGate = 'dealer_information_edit';
-                $deleteGate = 'dealer_information_delete';
-                $crudRoutePart = 'dealer-informations';
+                $viewGate = 'credit_check_show';
+                $editGate = 'credit_check_edit';
+                $deleteGate = 'credit_check_delete';
+                $crudRoutePart = 'credit-checks';
 
                 return view('_partials.datatablesActions', compact(
                     'viewGate',
@@ -225,13 +225,20 @@ class CreditChecksController extends Controller
         abort_if(Gate::denies('dealer_information_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
-    public function show(DealerInformation $dealerInformation)
+    public function show(DealerInformation $credit_check)
     {
-        abort_if(Gate::denies('dealer_information_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('credit_check_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $dealerInformation->load('dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information');
+        $credit_check->load('dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information');
 
-        return view('admin.dealerInformations.show', compact('dealerInformation'));
+        if ($credit_check->debtor_information)  {
+            $debtorInformation = $credit_check->debtor_information->load('auto_planner_information');
+            if ($debtorInformation->auto_planner_information) {
+                $debtorInformation->auto_planner_information->load('auto_planner_name');
+            }
+        }
+
+        return view('admin.creditCheck.show', compact('credit_check'));
     }
 
     public function destroy(DealerInformation $dealerInformation)

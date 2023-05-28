@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'User List - Pages')
+@section('title', 'Credit Check List - Pages')
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
@@ -31,37 +31,37 @@
 
 @section('content')
 
-    <!-- Users List Table -->
+    <!-- CreditChecks List Table -->
     <div class="card">
         <div class="card-header border-bottom">
-            <h5 class="card-title mb-3">Users</h5>
+            <h5 class="card-title mb-3">CreditChecks</h5>
         </div>
         <div class="card-datatable table-responsive">
-            <table class="datatables-users table border-top table-hover datatable-User">
+            <table class="datatables-creditChecks table border-top table-hover datatable-CreditCheck">
                 <thead>
                 <tr>
                     <th width="10">
 
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.id') }}
+                        {{ trans('cruds.creditCheck.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.name') }}
+                        {{ trans('cruds.creditCheck.fields.dealer_name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.email') }}
+                        {{ trans('cruds.creditCheck.fields.sales_name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.email_verified_at') }}
+                        {{ trans('cruds.creditCheck.fields.product_name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.approved') }}
+                        {{ trans('cruds.creditCheck.fields.brand_name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.roles') }}
+                        {{ trans('cruds.creditCheck.fields.models') }}
                     </th>
-                    <th>
+                    <th class="w-px-18">
                         {{ trans('global.actions') }}
                     </th>
                 </tr>

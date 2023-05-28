@@ -1,7 +1,7 @@
 <?php
 // Variables
 return [
-  "creatorName" => "My Website",
+  "creatorName" => "Credit Checking",
   "creatorUrl" => "",
   "templateName" => "My Website",
   "templateSuffix" => "Bootstrap 5",
