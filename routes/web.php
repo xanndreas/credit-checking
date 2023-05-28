@@ -34,15 +34,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     Route::resource('credit-checks', 'CreditChecksController');
 
-//
-//
-//    Route::resource('auto-planners', 'AutoPlannerController');
-//
-//    Route::resource('debtor-informations', 'DebtorInformationController');
-//
-//    Route::post('dealer-informations/media', 'DealerInformationController@storeMedia')->name('dealer-informations.storeMedia');
+    Route::post('credit-checks/dealer-informations/media', 'CreditChecksController@storeMedia')->name('credit-checks.dealer-informations.storeMedia');
 //    Route::post('dealer-informations/ckmedia', 'DealerInformationController@storeCKEditorImages')->name('dealer-informations.storeCKEditorImages');
-    Route::resource('dealer-informations', 'DealerInformationController');
+//    Route::resource('dealer-informations', 'DealerInformationController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'App\Http\Controllers\Auth', 'middleware' => ['auth']], function () {
     // Change password

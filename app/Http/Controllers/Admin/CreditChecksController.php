@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyDealerInformationRequest;
+use App\Http\Requests\StoreCreditCheckRequest;
 use App\Http\Requests\StoreDealerInformationRequest;
 use App\Http\Requests\UpdateDealerInformationRequest;
+use App\Models\AutoPlanner;
 use App\Models\Brand;
 use App\Models\Dealer;
 use App\Models\DealerInformation;
@@ -26,7 +28,7 @@ class CreditChecksController extends Controller
 
     public function index(Request $request)
     {
-        abort_if(Gate::denies('dealer_information_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('credit_check_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
             $query = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information'])->select(sprintf('%s.*', (new DealerInformation)->table));
@@ -36,9 +38,9 @@ class CreditChecksController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'dealer_information_show';
-                $editGate      = 'dealer_information_edit';
-                $deleteGate    = 'dealer_information_delete';
+                $viewGate = 'dealer_information_show';
+                $editGate = 'dealer_information_edit';
+                $deleteGate = 'dealer_information_delete';
                 $crudRoutePart = 'dealer-informations';
 
                 return view('_partials.datatablesActions', compact(
@@ -101,7 +103,7 @@ class CreditChecksController extends Controller
                 return $row->debtor_phone ? $row->debtor_phone : '';
             });
             $table->editColumn('id_photos', function ($row) {
-                if (! $row->id_photos) {
+                if (!$row->id_photos) {
                     return '';
                 }
                 $links = [];
@@ -128,7 +130,7 @@ class CreditChecksController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('dealer_information_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('credit_check_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $dealers = Dealer::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -142,64 +144,77 @@ class CreditChecksController extends Controller
 
         $debtor_informations = DebtorInformation::pluck('debtor_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.dealerInformations.create', compact('brands', 'dealers', 'debtor_informations', 'insurances', 'products', 'tenors'));
+        $auto_planner_informations = AutoPlanner::pluck('type', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.creditCheck.create', compact('brands', 'dealers', 'debtor_informations', 'auto_planner_informations', 'insurances', 'products', 'tenors'));
     }
 
-    public function store(StoreDealerInformationRequest $request)
+    public function store(StoreCreditCheckRequest $request)
     {
-        $dealerInformation = DealerInformation::create($request->all());
+        abort_if(Gate::denies('credit_check_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $autoPlannerStore = AutoPlanner::create($request->only(
+            [
+                'auto_planner_name_id',
+                'type'
+            ]
+        ));
+
+        $debtorInformationStore = AutoPlanner::create(array_merge($request->only(
+            [
+                'debtor_name',
+                'id_type',
+                'id_number',
+                'partner_name',
+                'guarantor_id_number',
+                'guarantor_name',
+            ]
+        ),
+            [
+                'auto_planner_information_id' => $autoPlannerStore->id
+            ]
+        ));
+
+        $dealerInformationStore = DealerInformation::create(array_merge($request->only(
+            [
+                'dealer_id',
+                'sales_name',
+                'product_id',
+                'brand_id',
+                'models',
+                'number_of_units',
+                'otr',
+                'debt_principal',
+                'insurance_id',
+                'down_payment',
+                'tenors_id',
+                'addm_addb',
+                'effective_rates',
+                'debtor_phone',
+                'remarks',
+            ]
+        )),
+            [
+                'debtor_information_id' => $debtorInformationStore->id
+            ]
+        );
 
         foreach ($request->input('id_photos', []) as $file) {
-            $dealerInformation->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('id_photos');
+            $dealerInformationStore->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('id_photos');
         }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $dealerInformation->id]);
-        }
-
-        return redirect()->route('admin.dealer-informations.index');
+        return redirect()->route('admin.home');
     }
 
     public function edit(DealerInformation $dealerInformation)
     {
         abort_if(Gate::denies('dealer_information_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $dealers = Dealer::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $brands = Brand::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $insurances = Insurance::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $tenors = Tenor::pluck('year', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $debtor_informations = DebtorInformation::pluck('debtor_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $dealerInformation->load('dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information');
-
-        return view('admin.dealerInformations.edit', compact('brands', 'dealerInformation', 'dealers', 'debtor_informations', 'insurances', 'products', 'tenors'));
     }
 
     public function update(UpdateDealerInformationRequest $request, DealerInformation $dealerInformation)
     {
-        $dealerInformation->update($request->all());
-
-        if (count($dealerInformation->id_photos) > 0) {
-            foreach ($dealerInformation->id_photos as $media) {
-                if (! in_array($media->file_name, $request->input('id_photos', []))) {
-                    $media->delete();
-                }
-            }
-        }
-        $media = $dealerInformation->id_photos->pluck('file_name')->toArray();
-        foreach ($request->input('id_photos', []) as $file) {
-            if (count($media) === 0 || ! in_array($file, $media)) {
-                $dealerInformation->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('id_photos');
-            }
-        }
-
-        return redirect()->route('admin.dealer-informations.index');
+        abort_if(Gate::denies('dealer_information_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
     public function show(DealerInformation $dealerInformation)
@@ -218,28 +233,5 @@ class CreditChecksController extends Controller
         $dealerInformation->delete();
 
         return back();
-    }
-
-    public function massDestroy(MassDestroyDealerInformationRequest $request)
-    {
-        $dealerInformations = DealerInformation::find(request('ids'));
-
-        foreach ($dealerInformations as $dealerInformation) {
-            $dealerInformation->delete();
-        }
-
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
-
-    public function storeCKEditorImages(Request $request)
-    {
-        abort_if(Gate::denies('dealer_information_create') && Gate::denies('dealer_information_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $model         = new DealerInformation();
-        $model->id     = $request->input('crud_id', 0);
-        $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
-
-        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
 }

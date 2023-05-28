@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Credit Checking')
+@section('title', 'Dashboard')
 
 
 @section('vendor-style')
@@ -24,7 +24,7 @@
                         <div class="card-body text-nowrap">
                             <h5 class="card-title mb-0">Here available task</h5>
                             <p class="mb-2">Click button below to start credit checking</p>
-                            <a href="javascript:;" class="btn btn-primary">Start </a>
+                            <a href="{{ route('admin.credit-checks.create') }}" class="btn btn-primary">Start </a>
                         </div>
                     </div>
                     <div class="col-5 text-center text-sm-left">
