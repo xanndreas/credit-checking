@@ -13,9 +13,34 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
+
     Route::resource('permissions', 'PermissionsController');
+
     Route::resource('roles', 'RolesController');
+
     Route::resource('users', 'UsersController');
+
+    Route::resource('dealers', 'DealerController');
+
+    Route::resource('products', 'ProductsController');
+
+    Route::resource('brands', 'BrandsController');
+
+    Route::resource('years', 'YearController');
+
+    Route::resource('insurances', 'InsuranceController');
+
+    Route::resource('tenors', 'TenorsController');
+
+//
+//
+//    Route::resource('auto-planners', 'AutoPlannerController');
+//
+//    Route::resource('debtor-informations', 'DebtorInformationController');
+//
+//    Route::post('dealer-informations/media', 'DealerInformationController@storeMedia')->name('dealer-informations.storeMedia');
+//    Route::post('dealer-informations/ckmedia', 'DealerInformationController@storeCKEditorImages')->name('dealer-informations.storeCKEditorImages');
+    Route::resource('dealer-informations', 'DealerInformationController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'App\Http\Controllers\Auth', 'middleware' => ['auth']], function () {
     // Change password
