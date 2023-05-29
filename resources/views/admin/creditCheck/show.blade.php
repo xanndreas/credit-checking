@@ -187,6 +187,22 @@
                         </tr>
                         <tr>
                             <th class="w-25">
+                                {{ trans('cruds.debtorInformation.fields.shareholders') }}
+                            </th>
+                            <td>
+                                {{ $credit_check->debtor_information->shareholders }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">
+                                {{ trans('cruds.debtorInformation.fields.shareholder_id_number') }}
+                            </th>
+                            <td>
+                                {{ $credit_check->debtor_information->shareholder_id_number }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">
                                 {{ trans('cruds.debtorInformation.fields.auto_planner_information') }}
                             </th>
                             <td>

@@ -18,7 +18,7 @@ $(function () {
             {data: 'product_name', name: 'product_name'},
             {data: 'brand_name', name: 'brand_name'},
             {data: 'models', name: 'models'},
-            {data: 'actions', name: 'Actions'}
+            {data: 'actions', name: 'Actions', orderable: false, searchable: false}
         ],
         orderCellsTop: true,
         order: [[2, 'desc']],

@@ -52,13 +52,13 @@
                 <div class="w-px-400 mx-auto">
                     <!-- Logo -->
                     <div class="app-brand mb-4">
-                        <a href="{{url('/')}}" class="app-brand-link gap-2">
+                        <a href="{{url('/')}}" class="app-brand-link gap-2 mx-auto">
                             <span
-                                class="app-brand-logo demo">@include('_partials.macros',["height"=>20,"withbg"=>'fill: #fff;'])</span>
+                                class="app-brand-logo">@include('_partials.macros',["height"=>50,"withbg"=>'fill: #fff;'])</span>
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h3 class=" mb-1 fw-bold">Welcome to {{config('variables.templateName')}}!</h3>
+{{--                    <h3 class=" mb-1 fw-bold">Welcome to {{config('variables.templateName')}}!</h3>--}}
                     <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
                     <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">

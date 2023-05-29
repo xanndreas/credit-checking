@@ -67,6 +67,14 @@ class StoreCreditCheckRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'shareholders' => [
+                'string',
+                'required',
+            ],
+            'shareholder_id_number' => [
+                'string',
+                'required',
+            ],
             'number_of_units' => [
                 'required',
                 'integer',
@@ -86,7 +94,7 @@ class StoreCreditCheckRequest extends FormRequest
             ],
             'down_payment' => [
                 'string',
-                'nullable',
+                'required',
             ],
             'tenors_id' => [
                 'required',

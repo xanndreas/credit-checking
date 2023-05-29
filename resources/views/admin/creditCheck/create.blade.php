@@ -277,6 +277,30 @@
                                         </div>
                                     @endif
                                 </div>
+                                <div class="col-sm-6">
+                                    <label
+                                        for="shareholders">{{ trans('cruds.debtorInformation.fields.shareholders') }}</label>
+                                    <input class="form-control {{ $errors->has('shareholders') ? 'is-invalid' : '' }}"
+                                           type="text" name="shareholders" id="shareholders"
+                                           value="{{ old('shareholders', '') }}">
+                                    @if($errors->has('shareholders'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('shareholders') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-6">
+                                    <label
+                                        for="shareholder_id_number">{{ trans('cruds.debtorInformation.fields.shareholder_id_number') }}</label>
+                                    <input class="form-control {{ $errors->has('shareholder_id_number') ? 'is-invalid' : '' }}"
+                                           type="text" name="shareholder_id_number" id="shareholder_id_number"
+                                           value="{{ old('shareholder_id_number', '') }}">
+                                    @if($errors->has('shareholder_id_number'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('shareholder_id_number') }}
+                                        </div>
+                                    @endif
+                                </div>
                                 <div class="col-12 d-flex justify-content-between">
                                     <button type="button" class="btn btn-label-secondary btn-prev"><i
                                             class="ti ti-arrow-left me-sm-1"></i>
@@ -299,7 +323,7 @@
                                     <label class="required"
                                            for="dealer_id">{{ trans('cruds.dealerInformation.fields.dealer') }}</label>
                                     <select
-                                        class="form-control select2 {{ $errors->has('dealer') ? 'is-invalid' : '' }}"
+                                        class="form-select select2 {{ $errors->has('dealer_id') ? 'is-invalid' : '' }}"
                                         name="dealer_id" id="dealer_id" required>
                                         <option value
                                                 disabled {{ old('dealer_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
@@ -308,9 +332,9 @@
                                                 value="{{ $id }}" {{ old('dealer_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                                         @endforeach
                                     </select>
-                                    @if($errors->has('dealer'))
+                                    @if($errors->has('dealer_id'))
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('dealer') }}
+                                            {{ $errors->first('dealer_id') }}
                                         </div>
                                     @endif
                                 </div>
@@ -344,7 +368,7 @@
                                     <label class="required"
                                            for="product_id">{{ trans('cruds.dealerInformation.fields.product') }}</label>
                                     <select
-                                        class="form-control select2 {{ $errors->has('product') ? 'is-invalid' : '' }}"
+                                        class="form-control select2 {{ $errors->has('product_id') ? 'is-invalid' : '' }}"
                                         name="product_id" id="product_id" required>
                                         <option value
                                                 disabled {{ old('product_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
@@ -354,16 +378,16 @@
                                                 value="{{ $id }}" {{ old('product_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                                         @endforeach
                                     </select>
-                                    @if($errors->has('product'))
+                                    @if($errors->has('product_id'))
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('product') }}
+                                            {{ $errors->first('product_id') }}
                                         </div>
                                     @endif
                                 </div>
                                 <div class="col-sm-12">
                                     <label class="required"
                                            for="brand_id">{{ trans('cruds.dealerInformation.fields.brand') }}</label>
-                                    <select class="form-control select2 {{ $errors->has('brand') ? 'is-invalid' : '' }}"
+                                    <select class="form-control select2 {{ $errors->has('brand_id') ? 'is-invalid' : '' }}"
                                             name="brand_id" id="brand_id" required>
                                         <option value
                                                 disabled {{ old('brand_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
@@ -373,9 +397,9 @@
                                                 value="{{ $id }}" {{ old('brand_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                                         @endforeach
                                     </select>
-                                    @if($errors->has('brand'))
+                                    @if($errors->has('brand_id'))
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('brand') }}
+                                            {{ $errors->first('brand_id') }}
                                         </div>
                                     @endif
                                 </div>
@@ -444,7 +468,7 @@
                                     <label class="required"
                                            for="insurance_id">{{ trans('cruds.dealerInformation.fields.insurance') }}</label>
                                     <select
-                                        class="form-control select2 {{ $errors->has('insurance') ? 'is-invalid' : '' }}"
+                                        class="form-control select2 {{ $errors->has('insurance_id') ? 'is-invalid' : '' }}"
                                         name="insurance_id" id="insurance_id" required>
                                         <option value
                                                 disabled {{ old('insurance_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
@@ -453,9 +477,9 @@
                                                 value="{{ $id }}" {{ old('insurance_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                                         @endforeach
                                     </select>
-                                    @if($errors->has('insurance'))
+                                    @if($errors->has('insurance_id'))
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('insurance') }}
+                                            {{ $errors->first('insurance_id') }}
                                         </div>
                                     @endif
                                 </div>
@@ -463,7 +487,7 @@
                                     <label class="required"
                                            for="tenors_id">{{ trans('cruds.dealerInformation.fields.tenors') }}</label>
                                     <select
-                                        class="form-control select2 {{ $errors->has('tenors') ? 'is-invalid' : '' }}"
+                                        class="form-control select2 {{ $errors->has('tenors_id') ? 'is-invalid' : '' }}"
                                         name="tenors_id" id="tenors_id" required>
                                         <option value
                                                 disabled {{ old('tenors_id', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
@@ -473,9 +497,9 @@
                                                 value="{{ $id }}" {{ old('tenors_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                                         @endforeach
                                     </select>
-                                    @if($errors->has('tenors'))
+                                    @if($errors->has('tenors_id'))
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('tenors') }}
+                                            {{ $errors->first('tenors_id') }}
                                         </div>
                                     @endif
                                 </div>

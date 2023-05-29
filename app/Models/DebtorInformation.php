@@ -33,6 +33,8 @@ class DebtorInformation extends Model
         'guarantor_id_number',
         'guarantor_name',
         'auto_planner_information_id',
+        'shareholders',
+        'shareholder_id_number',
         'created_at',
         'updated_at',
         'deleted_at',

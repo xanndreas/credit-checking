@@ -163,6 +163,8 @@ class CreditChecksController extends Controller
                     'id_type',
                     'id_number',
                     'partner_name',
+                    'shareholders',
+                    'shareholder_id_number',
                     'guarantor_id_number',
                     'guarantor_name',
                 ]
