@@ -120,7 +120,7 @@ class CreditChecksController extends Controller
                 return $row->debtor_information ? $row->debtor_information->debtor_name : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'dealer', 'product', 'brand', 'insurance', 'tenors', 'id_photos', 'debtor_information']);
+            $table->rawColumns(['actions', 'placeholder', 'insurance', 'dealer', 'tenors', 'id_photos', 'debtor_information']);
 
             return $table->make(true);
         }
@@ -132,11 +132,11 @@ class CreditChecksController extends Controller
     {
         abort_if(Gate::denies('credit_check_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $dealers = Dealer::pluck('name', 'id')->push('Other');;
+        $dealers = Dealer::pluck('name', 'id');
 
         $products = Product::pluck('name', 'id');
 
-        $brands = Brand::pluck('name', 'id')->push('Other');
+        $brands = Brand::pluck('name', 'id');
 
         $insurances = Insurance::pluck('name', 'id');
 
@@ -198,8 +198,8 @@ class CreditChecksController extends Controller
                 ),
                     [
                         'debtor_information_id' => $debtorInformationStore->id,
-                        'dealer_id' => $request->dealer_text == null ? ($findDealers ? $request->dealer_id : null) : null,
-                        'brand_id' => $request->brand_text == null ? ($findBrands ? $request->brand_id : null) : null,
+                        'dealer_id' => $request->dealer_text == null ? ($findDealers ? $request->dealer_id : DealerInformation::dealer_others_id) : DealerInformation::dealer_others_id,
+                        'brand_id' => $request->brand_text == null ? ($findBrands ? $request->brand_id : DealerInformation::brand_others_id) : DealerInformation::brand_others_id,
                         'down_payment' => $request->down_payment_text == null ? $request->down_payment : null,
                         'dealer_text' => $request->dealer_text,
                         'brand_text' => $request->brand_text,
@@ -233,7 +233,7 @@ class CreditChecksController extends Controller
 
         $credit_check->load('dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information');
 
-        if ($credit_check->debtor_information)  {
+        if ($credit_check->debtor_information) {
             $debtorInformation = $credit_check->debtor_information->load('auto_planner_information');
             if ($debtorInformation->auto_planner_information) {
                 $debtorInformation->auto_planner_information->load('auto_planner_name');

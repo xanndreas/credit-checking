@@ -24,16 +24,16 @@
         let uploadedIdPhotosMap = {}
         Dropzone.options.idPhotosDropzone = {
             url: '{{ route('admin.credit-checks.dealer-informations.storeMedia') }}',
-            maxFilesize: 2, // MB
+            maxFilesize: 10, // MB
             acceptedFiles: '.jpeg,.jpg,.png,.gif',
             addRemoveLinks: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             params: {
-                size: 2,
-                width: 4096,
-                height: 4096
+                size: 10,
+                width: 40960,
+                height: 40960
             },
             success: function (file, response) {
                 $('form').append('<input type="hidden" name="id_photos[]" value="' + response.name + '">')

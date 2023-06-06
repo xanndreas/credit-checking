@@ -13,10 +13,10 @@ $(function () {
         columns: [
             {data: 'placeholder', name: 'placeholder'},
             {data: 'id', name: 'id'},
-            {data: 'dealer_name', name: 'dealer_name'},
+            {data: 'dealer_name', name: 'dealer.name'},
             {data: 'sales_name', name: 'sales_name'},
-            {data: 'product_name', name: 'product_name'},
-            {data: 'brand_name', name: 'brand_name'},
+            {data: 'product_name', name: 'product.name'},
+            {data: 'brand_name', name: 'brand.name'},
             {data: 'models', name: 'models'},
             {data: 'actions', name: 'Actions', orderable: false, searchable: false}
         ],
