@@ -50,6 +50,9 @@
                         {{ trans('cruds.creditCheck.fields.dealer_name') }}
                     </th>
                     <th>
+
+                    </th>
+                    <th>
                         {{ trans('cruds.creditCheck.fields.sales_name') }}
                     </th>
                     <th>
@@ -57,6 +60,9 @@
                     </th>
                     <th>
                         {{ trans('cruds.creditCheck.fields.brand_name') }}
+                    </th>
+                    <th>
+
                     </th>
                     <th>
                         {{ trans('cruds.creditCheck.fields.models') }}
