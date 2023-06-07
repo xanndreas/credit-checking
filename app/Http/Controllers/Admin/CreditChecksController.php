@@ -56,7 +56,8 @@ class CreditChecksController extends Controller
                 return $row->id ? $row->id : '';
             });
             $table->addColumn('dealer_name', function ($row) {
-                return $row->dealer ? $row->dealer->name : '';
+                return $row->dealer ? ($row->dealer_id == DealerInformation::dealer_others_id ?
+                    $row->dealer_text : $row->dealer->name) : '';
             });
 
             $table->editColumn('sales_name', function ($row) {
@@ -67,7 +68,8 @@ class CreditChecksController extends Controller
             });
 
             $table->addColumn('brand_name', function ($row) {
-                return $row->brand ? $row->brand->name : '';
+                return $row->brand ? ($row->brand_id == DealerInformation::brand_others_id ?
+                    $row->brand_text : $row->brand->name) : '';
             });
 
             $table->editColumn('models', function ($row) {
