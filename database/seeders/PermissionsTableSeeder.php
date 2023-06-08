@@ -290,6 +290,10 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 70,
                 'title' => 'credit_check_show',
             ],
+            [
+                'id'    => 71,
+                'title' => 'credit_check_access_super',
+            ],
         ];
 
         Permission::insert($permissions);

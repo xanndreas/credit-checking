@@ -16,8 +16,8 @@ use App\Models\DebtorInformation;
 use App\Models\Insurance;
 use App\Models\Product;
 use App\Models\Tenor;
-use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -31,7 +31,13 @@ class CreditChecksController extends Controller
         abort_if(Gate::denies('credit_check_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information'])->select(sprintf('%s.*', (new DealerInformation)->table));
+            $query = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information']);
+
+            if (Gate::denies('credit_check_access_super')) {
+                $query->whereRelation('debtor_information.auto_planner_information', 'auto_planner_name_id', auth()->user()->id);
+            }
+
+            $query->select(sprintf('%s.*', (new DealerInformation)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
