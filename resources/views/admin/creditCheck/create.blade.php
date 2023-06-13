@@ -22,6 +22,10 @@
     <script src="{{asset('assets/js/admin/credit-checking.js')}}"></script>
     <script>
         let uploadedIdPhotosMap = {}
+        let uploadedKkPhotosMap = {}
+        let uploadedNpwpPhotosMap = {}
+        let uploadedOtherPhotosMap = {}
+
         Dropzone.options.idPhotosDropzone = {
             url: '{{ route('admin.credit-checks.dealer-informations.storeMedia') }}',
             maxFilesize: 10, // MB
@@ -63,6 +67,195 @@
                     this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
                     file.previewElement.classList.add('dz-complete')
                     $('form').append('<input type="hidden" name="id_photos[]" value="' + file.file_name + '">')
+                }
+
+                @endif
+            },
+            error: function (file, response) {
+                if ($.type(response) === 'string') {
+                    let message = response //dropzone sends it's own error messages in string
+                } else {
+                    let message = response.errors.file
+                }
+                file.previewElement.classList.add('dz-error')
+                _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+                _results = []
+                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                    node = _ref[_i]
+                    _results.push(node.textContent = message)
+                }
+
+                return _results
+            }
+        }
+
+        Dropzone.options.kkPhotosDropzone = {
+            url: '{{ route('admin.credit-checks.dealer-informations.storeMedia') }}',
+            maxFilesize: 10, // MB
+            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            addRemoveLinks: true,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            params: {
+                size: 10,
+                width: 40960,
+                height: 40960
+            },
+            success: function (file, response) {
+                $('form').append('<input type="hidden" name="kk_photos[]" value="' + response.name + '">')
+                uploadedIdPhotosMap[file.name] = response.name
+            },
+            removedfile: function (file) {
+                console.log(file)
+                file.previewElement.remove()
+                let name = ''
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name
+                } else {
+                    name = uploadedIdPhotosMap[file.name]
+                }
+                $('form').find('input[name="kk_photos[]"][value="' + name + '"]').remove()
+            },
+            init: function () {
+                @if(isset($dealerInformation) && $dealerInformation->kk_photos)
+                let files = {!! json_encode($dealerInformation->kk_photos) !!}
+
+                for(let
+                i in files
+            )
+                {
+                    let file = files[i]
+                    this.options.addedfile.call(this, file)
+                    this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+                    file.previewElement.classList.add('dz-complete')
+                    $('form').append('<input type="hidden" name="kk_photos[]" value="' + file.file_name + '">')
+                }
+
+                @endif
+            },
+            error: function (file, response) {
+                if ($.type(response) === 'string') {
+                    let message = response //dropzone sends it's own error messages in string
+                } else {
+                    let message = response.errors.file
+                }
+                file.previewElement.classList.add('dz-error')
+                _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+                _results = []
+                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                    node = _ref[_i]
+                    _results.push(node.textContent = message)
+                }
+
+                return _results
+            }
+        }
+
+        Dropzone.options.npwpPhotosDropzone = {
+            url: '{{ route('admin.credit-checks.dealer-informations.storeMedia') }}',
+            maxFilesize: 10, // MB
+            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            addRemoveLinks: true,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            params: {
+                size: 10,
+                width: 40960,
+                height: 40960
+            },
+            success: function (file, response) {
+                $('form').append('<input type="hidden" name="npwp_photos[]" value="' + response.name + '">')
+                uploadedIdPhotosMap[file.name] = response.name
+            },
+            removedfile: function (file) {
+                console.log(file)
+                file.previewElement.remove()
+                let name = ''
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name
+                } else {
+                    name = uploadedIdPhotosMap[file.name]
+                }
+                $('form').find('input[name="npwp_photos[]"][value="' + name + '"]').remove()
+            },
+            init: function () {
+                @if(isset($dealerInformation) && $dealerInformation->npwp_photos)
+                let files = {!! json_encode($dealerInformation->npwp_photos) !!}
+
+                for(let
+                i in files
+            )
+                {
+                    let file = files[i]
+                    this.options.addedfile.call(this, file)
+                    this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+                    file.previewElement.classList.add('dz-complete')
+                    $('form').append('<input type="hidden" name="npwp_photos[]" value="' + file.file_name + '">')
+                }
+
+                @endif
+            },
+            error: function (file, response) {
+                if ($.type(response) === 'string') {
+                    let message = response //dropzone sends it's own error messages in string
+                } else {
+                    let message = response.errors.file
+                }
+                file.previewElement.classList.add('dz-error')
+                _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+                _results = []
+                for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                    node = _ref[_i]
+                    _results.push(node.textContent = message)
+                }
+
+                return _results
+            }
+        }
+
+        Dropzone.options.otherPhotosDropzone = {
+            url: '{{ route('admin.credit-checks.dealer-informations.storeMedia') }}',
+            maxFilesize: 10, // MB
+            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            addRemoveLinks: true,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            params: {
+                size: 10,
+                width: 40960,
+                height: 40960
+            },
+            success: function (file, response) {
+                $('form').append('<input type="hidden" name="other_photos[]" value="' + response.name + '">')
+                uploadedIdPhotosMap[file.name] = response.name
+            },
+            removedfile: function (file) {
+                console.log(file)
+                file.previewElement.remove()
+                let name = ''
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name
+                } else {
+                    name = uploadedIdPhotosMap[file.name]
+                }
+                $('form').find('input[name="other_photos[]"][value="' + name + '"]').remove()
+            },
+            init: function () {
+                @if(isset($dealerInformation) && $dealerInformation->other_photos)
+                let files = {!! json_encode($dealerInformation->other_photos) !!}
+
+                for(let
+                i in files
+            )
+                {
+                    let file = files[i]
+                    this.options.addedfile.call(this, file)
+                    this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+                    file.previewElement.classList.add('dz-complete')
+                    $('form').append('<input type="hidden" name="other_photos[]" value="' + file.file_name + '">')
                 }
 
                 @endif
@@ -231,7 +424,7 @@
                                     <label class="required"
                                            for="id_number">{{ trans('cruds.debtorInformation.fields.id_number') }}</label>
                                     <input class="form-control {{ $errors->has('id_number') ? 'is-invalid' : '' }}"
-                                           type="text" name="id_number" id="id_number"
+                                           type="number" name="id_number" id="id_number"
                                            value="{{ old('id_number', '') }}"
                                            required>
                                     @if($errors->has('id_number'))
@@ -257,7 +450,7 @@
                                         for="guarantor_id_number">{{ trans('cruds.debtorInformation.fields.guarantor_id_number') }}</label>
                                     <input
                                         class="form-control {{ $errors->has('guarantor_id_number') ? 'is-invalid' : '' }}"
-                                        type="text" name="guarantor_id_number" id="guarantor_id_number"
+                                        type="number" name="guarantor_id_number" id="guarantor_id_number"
                                         value="{{ old('guarantor_id_number', '') }}">
                                     @if($errors->has('guarantor_id_number'))
                                         <div class="invalid-feedback">
@@ -527,7 +720,7 @@
                                     <label class="required"
                                            for="down_payment_text">{{ trans('cruds.dealerInformation.fields.down_payment_text') }}</label>
                                     <input class="form-control {{ $errors->has('down_payment_text') ? 'is-invalid' : '' }}"
-                                           type="text" name="down_payment_text" id="down_payment_text"
+                                           type="number" name="down_payment_text" id="down_payment_text"
                                            value="{{ old('down_payment_text', '') }}"
                                            required>
                                     @if($errors->has('down_payment_text'))
@@ -593,6 +786,42 @@
                                     @if($errors->has('id_photos'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('id_photos') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="required"
+                                           for="kk_photos">{{ trans('cruds.dealerInformation.fields.kk_photos') }}</label>
+                                    <div class="needsclick dropzone {{ $errors->has('kk_photos') ? 'is-invalid' : '' }}"
+                                         id="kk_photos-dropzone">
+                                    </div>
+                                    @if($errors->has('kk_photos'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('kk_photos') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="required"
+                                           for="npwp_photos">{{ trans('cruds.dealerInformation.fields.npwp_photos') }}</label>
+                                    <div class="needsclick dropzone {{ $errors->has('npwp_photos') ? 'is-invalid' : '' }}"
+                                         id="npwp_photos-dropzone">
+                                    </div>
+                                    @if($errors->has('npwp_photos'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('npwp_photos') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="required"
+                                           for="other_photos">{{ trans('cruds.dealerInformation.fields.other_photos') }}</label>
+                                    <div class="needsclick dropzone {{ $errors->has('other_photos') ? 'is-invalid' : '' }}"
+                                         id="other_photos-dropzone">
+                                    </div>
+                                    @if($errors->has('other_photos'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('other_photos') }}
                                         </div>
                                     @endif
                                 </div>

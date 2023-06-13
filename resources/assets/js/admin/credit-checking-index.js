@@ -110,6 +110,10 @@ $(function () {
                         className: 'dropdown-item',
                     }
                 ]
+            },
+            {
+                text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Add Credit Checking</span>',
+                className: 'add-new-credit btn btn-primary',
             }
         ],
         columnDefs: [
@@ -136,5 +140,9 @@ $(function () {
     $('a[data-toggle="tab"]').on('shown.bs.tab click', function (e) {
         $($.fn.dataTable.tables(true)).DataTable()
             .columns.adjust();
+    });
+
+    $('.add-new-credit').on('click', function () {
+        window.location.href = '/admin/credit-checks/create';
     });
 });

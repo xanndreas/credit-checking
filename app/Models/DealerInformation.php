@@ -21,6 +21,9 @@ class DealerInformation extends Model implements HasMedia
 
     protected $appends = [
         'id_photos',
+        'kk_photos',
+        'npwp_photos',
+        'other_photos',
     ];
 
     public const DOWN_PAYMENT_SELECT = [
@@ -101,6 +104,42 @@ class DealerInformation extends Model implements HasMedia
     public function getIdPhotosAttribute()
     {
         $files = $this->getMedia('id_photos');
+        $files->each(function ($item) {
+            $item->url = $item->getUrl();
+            $item->thumbnail = $item->getUrl('thumb');
+            $item->preview = $item->getUrl('preview');
+        });
+
+        return $files;
+    }
+
+    public function getKkPhotosAttribute()
+    {
+        $files = $this->getMedia('kk_photos');
+        $files->each(function ($item) {
+            $item->url = $item->getUrl();
+            $item->thumbnail = $item->getUrl('thumb');
+            $item->preview = $item->getUrl('preview');
+        });
+
+        return $files;
+    }
+
+    public function getNpwpPhotosAttribute()
+    {
+        $files = $this->getMedia('npwp_photos');
+        $files->each(function ($item) {
+            $item->url = $item->getUrl();
+            $item->thumbnail = $item->getUrl('thumb');
+            $item->preview = $item->getUrl('preview');
+        });
+
+        return $files;
+    }
+
+    public function getOtherPhotosAttribute()
+    {
+        $files = $this->getMedia('other_photos');
         $files->each(function ($item) {
             $item->url = $item->getUrl();
             $item->thumbnail = $item->getUrl('thumb');

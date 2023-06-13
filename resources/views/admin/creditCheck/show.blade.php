@@ -139,6 +139,42 @@
                         </tr>
                         <tr>
                             <th class="w-25">
+                                {{ trans('cruds.dealerInformation.fields.kk_photos') }}
+                            </th>
+                            <td>
+                                @foreach($credit_check->kk_photos as $key => $media)
+                                    <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $media->getUrl() }}" height="70px">
+                                    </a>
+                                @endforeach
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">
+                                {{ trans('cruds.dealerInformation.fields.npwp_photos') }}
+                            </th>
+                            <td>
+                                @foreach($credit_check->npwp_photos as $key => $media)
+                                    <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $media->getUrl() }}" height="70px">
+                                    </a>
+                                @endforeach
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">
+                                {{ trans('cruds.dealerInformation.fields.other_photos') }}
+                            </th>
+                            <td>
+                                @foreach($credit_check->other_photos as $key => $media)
+                                    <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $media->getUrl() }}" height="70px">
+                                    </a>
+                                @endforeach
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">
                                 {{ trans('cruds.dealerInformation.fields.remarks') }}
                             </th>
                             <td>
@@ -219,6 +255,10 @@
                         </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <div class="card-footer">
+                    <a class="btn btn-primary" href="{{ route('admin.credit-checks.index') }}">Back</a>
                 </div>
             </div>
         </div>

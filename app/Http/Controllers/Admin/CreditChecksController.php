@@ -121,6 +121,39 @@ class CreditChecksController extends Controller
 
                 return implode(' ', $links);
             });
+            $table->editColumn('kk_photos', function ($row) {
+                if (!$row->kk_photos) {
+                    return '';
+                }
+                $links = [];
+                foreach ($row->kk_photos as $media) {
+                    $links[] = '<a href="' . $media->getUrl() . '" target="_blank"><img src="' . $media->getUrl('thumb') . '" width="50px" height="50px"></a>';
+                }
+
+                return implode(' ', $links);
+            });
+            $table->editColumn('npwp_photos', function ($row) {
+                if (!$row->npwp_photos) {
+                    return '';
+                }
+                $links = [];
+                foreach ($row->npwp_photos as $media) {
+                    $links[] = '<a href="' . $media->getUrl() . '" target="_blank"><img src="' . $media->getUrl('thumb') . '" width="50px" height="50px"></a>';
+                }
+
+                return implode(' ', $links);
+            });
+            $table->editColumn('other_photos', function ($row) {
+                if (!$row->other_photos) {
+                    return '';
+                }
+                $links = [];
+                foreach ($row->other_photos as $media) {
+                    $links[] = '<a href="' . $media->getUrl() . '" target="_blank"><img src="' . $media->getUrl('thumb') . '" width="50px" height="50px"></a>';
+                }
+
+                return implode(' ', $links);
+            });
             $table->editColumn('remarks', function ($row) {
                 return $row->remarks ? $row->remarks : '';
             });
@@ -128,7 +161,7 @@ class CreditChecksController extends Controller
                 return $row->debtor_information ? $row->debtor_information->debtor_name : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'insurance', 'dealer', 'tenors', 'id_photos', 'debtor_information']);
+            $table->rawColumns(['actions', 'placeholder', 'insurance', 'dealer', 'tenors', 'id_photos', 'kk_photos', 'npwp_photos', 'other_photos', 'debtor_information']);
 
             return $table->make(true);
         }
@@ -140,11 +173,11 @@ class CreditChecksController extends Controller
     {
         abort_if(Gate::denies('credit_check_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $dealers = Dealer::pluck('name', 'id');
+        $dealers = Dealer::query()->orderByDesc('aliases')->pluck('name', 'id');
 
         $products = Product::pluck('name', 'id');
 
-        $brands = Brand::pluck('name', 'id');
+        $brands = Brand::query()->orderByDesc('aliases')->pluck('name', 'id');
 
         $insurances = Insurance::pluck('name', 'id');
 
@@ -208,7 +241,7 @@ class CreditChecksController extends Controller
                         'debtor_information_id' => $debtorInformationStore->id,
                         'dealer_id' => $request->dealer_text == null ? ($findDealers ? $request->dealer_id : DealerInformation::dealer_others_id) : DealerInformation::dealer_others_id,
                         'brand_id' => $request->brand_text == null ? ($findBrands ? $request->brand_id : DealerInformation::brand_others_id) : DealerInformation::brand_others_id,
-                        'down_payment' => $request->down_payment_text == null ? $request->down_payment : null,
+                        'down_payment' => $request->down_payment_text == null ? $request->down_payment : $request->down_payment_text,
                         'dealer_text' => $request->dealer_text,
                         'brand_text' => $request->brand_text,
                         'down_payment_text' => $request->down_payment_text,
@@ -216,12 +249,32 @@ class CreditChecksController extends Controller
                 ));
 
                 foreach ($request->input('id_photos', []) as $file) {
-                    $dealerInformationStore->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('id_photos');
+                    $dealerInformationStore->addMedia(storage_path('tmp/uploads/' . basename($file)))
+                        ->usingFileName('KTP_' . $request->debtor_name . '_' . uniqid() . '.' . explode('.', $file)[1])
+                        ->toMediaCollection('id_photos');
+                }
+
+                foreach ($request->input('kk_photos', []) as $file) {
+                    $dealerInformationStore->addMedia(storage_path('tmp/uploads/' . basename($file)))
+                        ->usingFileName('KK_' . $request->debtor_name . '_' . uniqid() . '.' . explode('.', $file)[1])
+                        ->toMediaCollection('kk_photos');
+                }
+
+                foreach ($request->input('npwp_photos', []) as $file) {
+                    $dealerInformationStore->addMedia(storage_path('tmp/uploads/' . basename($file)))
+                        ->usingFileName('NPWP_' . $request->debtor_name . '_' . uniqid() . '.' . explode('.', $file)[1])
+                        ->toMediaCollection('npwp_photos');
+                }
+
+                foreach ($request->input('other_photos', []) as $file) {
+                    $dealerInformationStore->addMedia(storage_path('tmp/uploads/' . basename($file)))
+                        ->usingFileName('Other_' . $request->debtor_name . '_' . uniqid() . '.' . explode('.', $file)[1])
+                        ->toMediaCollection('other_photos');
                 }
             }
         }
 
-        return redirect()->route('admin.home');
+        return redirect()->route('admin.credit-checks.index');
     }
 
     public function edit(DealerInformation $dealerInformation)

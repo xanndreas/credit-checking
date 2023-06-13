@@ -12,9 +12,9 @@ class DealersTableSeeder extends Seeder
     {
         $dealers = [
             [
-                'id'    => 9999,
+                'id'    => 1,
                 'name' => 'Other',
-                'aliases' => 'Other',
+                'aliases' => 'zzother',
             ],
         ];
 

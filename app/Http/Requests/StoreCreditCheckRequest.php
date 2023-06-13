@@ -32,15 +32,17 @@ class StoreCreditCheckRequest extends FormRequest
                 'required',
             ],
             'id_number' => [
-                'string',
+                'numeric',
                 'required',
+                'digits:16',
             ],
             'partner_name' => [
                 'string',
                 'nullable',
             ],
             'guarantor_id_number' => [
-                'string',
+                'numeric',
+                'digits:16',
                 'nullable',
             ],
             'guarantor_name' => [
@@ -117,6 +119,27 @@ class StoreCreditCheckRequest extends FormRequest
                 'required',
             ],
             'id_photos.*' => [
+                'required',
+            ],
+            'kk_photos' => [
+                'array',
+                'required',
+            ],
+            'kk_photos.*' => [
+                'required',
+            ],
+            'npwp_photos' => [
+                'array',
+                'required',
+            ],
+            'npwp_photos.*' => [
+                'required',
+            ],
+            'other_photos' => [
+                'array',
+                'required',
+            ],
+            'other_photos.*' => [
                 'required',
             ],
             'remarks' => [

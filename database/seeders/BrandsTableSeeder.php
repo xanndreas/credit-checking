@@ -11,9 +11,9 @@ class BrandsTableSeeder extends Seeder
     {
         $brands = [
             [
-                'id'    => 9999,
+                'id'    => 1,
                 'name' => 'Other',
-                'aliases' => 'Other',
+                'aliases' => 'zzother',
             ],
         ];
 
