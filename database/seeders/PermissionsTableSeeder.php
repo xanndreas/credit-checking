@@ -310,6 +310,26 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 75,
                 'title' => 'tenant_auto_planner',
             ],
+            [
+                'id'    => 76,
+                'title' => 'team_access',
+            ],
+            [
+                'id'    => 77,
+                'title' => 'team_create',
+            ],
+            [
+                'id'    => 78,
+                'title' => 'team_edit',
+            ],
+            [
+                'id'    => 79,
+                'title' => 'team_show',
+            ],
+            [
+                'id'    => 80,
+                'title' => 'team_delete',
+            ],
         ];
 
         Permission::insert($permissions);

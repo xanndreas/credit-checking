@@ -43,6 +43,12 @@
             "permission": "role_access"
         },
         {
+            "name": "cruds.team.title",
+            "icon": "menu-icon tf-icons ti ti-lock",
+            "slug": "admin.teams.index",
+            "permission": "team_access"
+        },
+        {
             "menuHeader": "cruds.inputParameter.title",
             "permission": "input_parameter_access"
         },

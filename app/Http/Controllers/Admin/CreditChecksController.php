@@ -19,6 +19,7 @@ use App\Models\Product;
 use App\Models\Tenor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -34,11 +35,11 @@ class CreditChecksController extends Controller
         abort_if(Gate::denies('credit_check_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
+
             $query = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information']);
 
-            if (Gate::denies('credit_check_access_super')) {
-                $query->whereRelation('debtor_information.auto_planner_information', 'auto_planner_name_id', auth()->user()->id);
-            }
+            $query->whereHas('debtor_information.auto_planner_information',
+                fn($q) => $q->whereIn('auto_planner_name_id', Auth::user()->tenant_ids == null ? [] : Auth::user()->tenant_ids));
 
             $query->select(sprintf('%s.*', (new DealerInformation)->table));
 
@@ -180,7 +181,8 @@ class CreditChecksController extends Controller
         return view('admin.creditCheck.index');
     }
 
-    public function download(Request $request) {
+    public function download(Request $request)
+    {
         if ($request->minDate != null && $request->maxDate != null) {
             return Excel::download(new CreditCheckingExport($request->minDate, $request->maxDate), 'credit-checking.xlsx');
         }

@@ -24,7 +24,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::KltNxa2B1JLF5UvU',
+            '_route' => 'generated::hES0Ka0lhLM1fNyI',
           ),
           1 => NULL,
           2 => 
@@ -553,7 +553,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::1NFZnnv1RCp6e7Xu',
+            '_route' => 'generated::JyBNLkwqDWJmI6Po',
           ),
           1 => NULL,
           2 => 
@@ -578,7 +578,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::F8vFVICjDbPEgI6n',
+            '_route' => 'generated::9VSfDuoufBvdZfE6',
           ),
           1 => NULL,
           2 => 
@@ -615,7 +615,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::TSmHYamzsocMtvPd',
+            '_route' => 'generated::qaQhFhV9waawLMUv',
           ),
           1 => NULL,
           2 => 
@@ -670,7 +670,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::YfKLAvbjAcQdnUKI',
+            '_route' => 'generated::hFc1wEV68ONEMn0H',
           ),
           1 => NULL,
           2 => 
@@ -761,7 +761,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::0KOzauJxUS78HIhO',
+            '_route' => 'generated::7ZKT4kj3tZSpv6FY',
           ),
           1 => NULL,
           2 => 
@@ -1298,6 +1298,62 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/admin/teams' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.teams.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.teams.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/teams/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.teams.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/admin/credit-checks' => 
       array (
         0 => 
@@ -1450,7 +1506,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/_dusk/(?|log(?|in/([^/]++)(?:/([^/]++))?(*:48)|out(?:/([^/]++))?(*:72))|user(?:/([^/]++))?(*:98))|/a(?|pi/v1/(?|p(?|ermissions/([^/]++)(?|(*:146))|roducts/([^/]++)(?|(*:174)))|roles/([^/]++)(?|(*:201))|users/([^/]++)(?|(*:227))|de(?|aler(?|s/([^/]++)(?|(*:261))|\\-informations/([^/]++)(?|(*:296)))|btor\\-informations/([^/]++)(?|(*:336)))|brands/([^/]++)(?|(*:364))|years/([^/]++)(?|(*:390))|insurances/([^/]++)(?|(*:421))|tenors/([^/]++)(?|(*:448))|auto\\-planners/([^/]++)(?|(*:483)))|dmin/(?|p(?|ermissions/([^/]++)(?|(*:527)|/edit(*:540)|(*:548))|roducts/([^/]++)(?|(*:576)|/edit(*:589)|(*:597)))|roles/([^/]++)(?|(*:624)|/edit(*:637)|(*:645))|users/([^/]++)(?|(*:671)|/edit(*:684)|(*:692))|dealers/([^/]++)(?|(*:720)|/edit(*:733)|(*:741))|brands/([^/]++)(?|(*:768)|/edit(*:781)|(*:789))|years/([^/]++)(?|(*:815)|/edit(*:828)|(*:836))|insurances/([^/]++)(?|(*:867)|/edit(*:880)|(*:888))|tenors/([^/]++)(?|(*:915)|/edit(*:928)|(*:936))|credit\\-checks/([^/]++)(?|(*:971)|/edit(*:984)|(*:992))))|/password/reset/([^/]++)(*:1027))/?$}sDu',
+      0 => '{^(?|/_dusk/(?|log(?|in/([^/]++)(?:/([^/]++))?(*:48)|out(?:/([^/]++))?(*:72))|user(?:/([^/]++))?(*:98))|/a(?|pi/v1/(?|p(?|ermissions/([^/]++)(?|(*:146))|roducts/([^/]++)(?|(*:174)))|roles/([^/]++)(?|(*:201))|users/([^/]++)(?|(*:227))|de(?|aler(?|s/([^/]++)(?|(*:261))|\\-informations/([^/]++)(?|(*:296)))|btor\\-informations/([^/]++)(?|(*:336)))|brands/([^/]++)(?|(*:364))|years/([^/]++)(?|(*:390))|insurances/([^/]++)(?|(*:421))|tenors/([^/]++)(?|(*:448))|auto\\-planners/([^/]++)(?|(*:483)))|dmin/(?|p(?|ermissions/([^/]++)(?|(*:527)|/edit(*:540)|(*:548))|roducts/([^/]++)(?|(*:576)|/edit(*:589)|(*:597)))|roles/([^/]++)(?|(*:624)|/edit(*:637)|(*:645))|users/([^/]++)(?|(*:671)|/edit(*:684)|(*:692))|dealers/([^/]++)(?|(*:720)|/edit(*:733)|(*:741))|brands/([^/]++)(?|(*:768)|/edit(*:781)|(*:789))|years/([^/]++)(?|(*:815)|/edit(*:828)|(*:836))|insurances/([^/]++)(?|(*:867)|/edit(*:880)|(*:888))|te(?|nors/([^/]++)(?|(*:918)|/edit(*:931)|(*:939))|ams/([^/]++)(?|(*:963)|/edit(*:976)|(*:984)))|credit\\-checks/(?|([^/]++)(?|(*:1023)|/edit(*:1037)|(*:1046))|download(*:1064))))|/password/reset/([^/]++)(*:1100))/?$}sDu',
     ),
     3 => 
     array (
@@ -2975,7 +3031,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      915 => 
+      918 => 
       array (
         0 => 
         array (
@@ -2998,7 +3054,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      928 => 
+      931 => 
       array (
         0 => 
         array (
@@ -3021,7 +3077,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      936 => 
+      939 => 
       array (
         0 => 
         array (
@@ -3063,7 +3119,95 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      971 => 
+      963 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.teams.show',
+          ),
+          1 => 
+          array (
+            0 => 'team',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      976 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.teams.edit',
+          ),
+          1 => 
+          array (
+            0 => 'team',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      984 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.teams.update',
+          ),
+          1 => 
+          array (
+            0 => 'team',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.teams.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'team',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1023 => 
       array (
         0 => 
         array (
@@ -3086,7 +3230,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      984 => 
+      1037 => 
       array (
         0 => 
         array (
@@ -3109,7 +3253,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      992 => 
+      1046 => 
       array (
         0 => 
         array (
@@ -3151,7 +3295,28 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1027 => 
+      1064 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.credit-checks.download',
+          ),
+          1 => 
+          array (
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1100 => 
       array (
         0 => 
         array (
@@ -3291,7 +3456,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::KltNxa2B1JLF5UvU' => 
+    'generated::hES0Ka0lhLM1fNyI' => 
     array (
       'methods' => 
       array (
@@ -3312,7 +3477,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 'web',
         ),
-        'as' => 'generated::KltNxa2B1JLF5UvU',
+        'as' => 'generated::hES0Ka0lhLM1fNyI',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5730,7 +5895,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::1NFZnnv1RCp6e7Xu' => 
+    'generated::JyBNLkwqDWJmI6Po' => 
     array (
       'methods' => 
       array (
@@ -5756,7 +5921,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::1NFZnnv1RCp6e7Xu',
+        'as' => 'generated::JyBNLkwqDWJmI6Po',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5774,7 +5939,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::F8vFVICjDbPEgI6n' => 
+    'generated::9VSfDuoufBvdZfE6' => 
     array (
       'methods' => 
       array (
@@ -5794,13 +5959,13 @@ app('router')->setCompiledRoutes(
     }
 
     return \\redirect()->route(\'admin.home\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000a960000000000000000";}";s:4:"hash";s:44:"WpC8i7xjRGx6VZ+dje+zLvUEXgBdGrboHqz60qnmLy8=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005d90000000000000000";}";s:4:"hash";s:44:"gxbI3u8cTeTATg6OB0DxWDAqcTc2sPz5S76rleoEC/E=";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::F8vFVICjDbPEgI6n',
+        'as' => 'generated::9VSfDuoufBvdZfE6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5853,7 +6018,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::TSmHYamzsocMtvPd' => 
+    'generated::qaQhFhV9waawLMUv' => 
     array (
       'methods' => 
       array (
@@ -5873,7 +6038,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::TSmHYamzsocMtvPd',
+        'as' => 'generated::qaQhFhV9waawLMUv',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5962,7 +6127,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::YfKLAvbjAcQdnUKI' => 
+    'generated::hFc1wEV68ONEMn0H' => 
     array (
       'methods' => 
       array (
@@ -5982,7 +6147,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::YfKLAvbjAcQdnUKI',
+        'as' => 'generated::hFc1wEV68ONEMn0H',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6181,7 +6346,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::0KOzauJxUS78HIhO' => 
+    'generated::7ZKT4kj3tZSpv6FY' => 
     array (
       'methods' => 
       array (
@@ -6201,7 +6366,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::0KOzauJxUS78HIhO',
+        'as' => 'generated::7ZKT4kj3tZSpv6FY',
       ),
       'fallback' => false,
       'defaults' => 
@@ -8631,6 +8796,270 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'admin.teams.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/teams',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.teams.index',
+        'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@index',
+        'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@index',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.teams.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/teams/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.teams.create',
+        'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@create',
+        'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@create',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.teams.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/teams',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.teams.store',
+        'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@store',
+        'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@store',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.teams.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/teams/{team}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.teams.show',
+        'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@show',
+        'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@show',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.teams.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/teams/{team}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.teams.edit',
+        'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@edit',
+        'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@edit',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.teams.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'admin/teams/{team}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.teams.update',
+        'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@update',
+        'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@update',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.teams.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'admin/teams/{team}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.teams.destroy',
+        'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@destroy',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'admin.credit-checks.index' => 
     array (
       'methods' => 
@@ -8875,6 +9304,43 @@ app('router')->setCompiledRoutes(
         'as' => 'admin.credit-checks.destroy',
         'uses' => 'App\\Http\\Controllers\\Admin\\CreditChecksController@destroy',
         'controller' => 'App\\Http\\Controllers\\Admin\\CreditChecksController@destroy',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.credit-checks.download' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/credit-checks/download',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\CreditChecksController@download',
+        'controller' => 'App\\Http\\Controllers\\Admin\\CreditChecksController@download',
+        'as' => 'admin.credit-checks.download',
         'namespace' => 'App\\Http\\Controllers\\Admin',
         'prefix' => '/admin',
         'where' => 

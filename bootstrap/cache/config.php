@@ -41,6 +41,7 @@
       24 => 'App\\Providers\\EventServiceProvider',
       25 => 'App\\Providers\\RouteServiceProvider',
       26 => 'App\\Providers\\MenuServiceProvider',
+      27 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     ),
     'aliases' => 
     array (
@@ -84,6 +85,7 @@
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Vite' => 'Illuminate\\Support\\Facades\\Vite',
       'Helper' => 'App\\Helpers\\Helpers',
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
   'auth' => 
@@ -575,6 +577,96 @@
       ),
     ),
   ),
+  'media-library' => 
+  array (
+    'disk_name' => 'public',
+    'max_file_size' => 10485760,
+    'queue_connection_name' => 'sync',
+    'queue_name' => '',
+    'queue_conversions_by_default' => true,
+    'media_model' => 'Spatie\\MediaLibrary\\MediaCollections\\Models\\Media',
+    'temporary_upload_model' => 'Spatie\\MediaLibraryPro\\Models\\TemporaryUpload',
+    'enable_temporary_uploads_session_affinity' => true,
+    'generate_thumbnails_for_temporary_uploads' => true,
+    'file_namer' => 'App\\Services\\CustomNameGenerator',
+    'path_generator' => 'App\\Services\\CustomPathGenerator',
+    'custom_path_generators' => 
+    array (
+    ),
+    'url_generator' => 'Spatie\\MediaLibrary\\Support\\UrlGenerator\\DefaultUrlGenerator',
+    'moves_media_on_update' => false,
+    'version_urls' => false,
+    'image_optimizers' => 
+    array (
+      'Spatie\\ImageOptimizer\\Optimizers\\Jpegoptim' => 
+      array (
+        0 => '-m85',
+        1 => '--force',
+        2 => '--strip-all',
+        3 => '--all-progressive',
+      ),
+      'Spatie\\ImageOptimizer\\Optimizers\\Pngquant' => 
+      array (
+        0 => '--force',
+      ),
+      'Spatie\\ImageOptimizer\\Optimizers\\Optipng' => 
+      array (
+        0 => '-i0',
+        1 => '-o2',
+        2 => '-quiet',
+      ),
+      'Spatie\\ImageOptimizer\\Optimizers\\Svgo' => 
+      array (
+        0 => '--disable=cleanupIDs',
+      ),
+      'Spatie\\ImageOptimizer\\Optimizers\\Gifsicle' => 
+      array (
+        0 => '-b',
+        1 => '-O3',
+      ),
+      'Spatie\\ImageOptimizer\\Optimizers\\Cwebp' => 
+      array (
+        0 => '-m 6',
+        1 => '-pass 10',
+        2 => '-mt',
+        3 => '-q 90',
+      ),
+    ),
+    'image_generators' => 
+    array (
+      0 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Image',
+      1 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Webp',
+      2 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Pdf',
+      3 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Svg',
+      4 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Video',
+    ),
+    'temporary_directory_path' => NULL,
+    'image_driver' => 'gd',
+    'ffmpeg_path' => '/usr/bin/ffmpeg',
+    'ffprobe_path' => '/usr/bin/ffprobe',
+    'jobs' => 
+    array (
+      'perform_conversions' => 'Spatie\\MediaLibrary\\Conversions\\Jobs\\PerformConversionsJob',
+      'generate_responsive_images' => 'Spatie\\MediaLibrary\\ResponsiveImages\\Jobs\\GenerateResponsiveImagesJob',
+    ),
+    'media_downloader' => 'Spatie\\MediaLibrary\\Downloaders\\DefaultDownloader',
+    'remote' => 
+    array (
+      'extra_headers' => 
+      array (
+        'CacheControl' => 'max-age=604800',
+      ),
+    ),
+    'responsive_images' => 
+    array (
+      'width_calculator' => 'Spatie\\MediaLibrary\\ResponsiveImages\\WidthCalculator\\FileSizeOptimizedWidthCalculator',
+      'use_tiny_placeholders' => true,
+      'tiny_placeholder_generator' => 'Spatie\\MediaLibrary\\ResponsiveImages\\TinyPlaceholderGenerator\\Blurred',
+    ),
+    'enable_vapor_uploads' => false,
+    'default_loading_attribute_value' => NULL,
+    'prefix' => '',
+  ),
   'panel' => 
   array (
     'date_format' => 'Y-m-d',
@@ -751,6 +843,118 @@
   array (
     'driver' => 'gd',
   ),
+  'excel' => 
+  array (
+    'exports' => 
+    array (
+      'chunk_size' => 1000,
+      'pre_calculate_formulas' => false,
+      'strict_null_comparison' => false,
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'line_ending' => '
+',
+        'use_bom' => false,
+        'include_separator_line' => false,
+        'excel_compatibility' => false,
+        'output_encoding' => '',
+        'test_auto_detect' => true,
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'imports' => 
+    array (
+      'read_only' => true,
+      'ignore_empty' => false,
+      'heading_row' => 
+      array (
+        'formatter' => 'slug',
+      ),
+      'csv' => 
+      array (
+        'delimiter' => NULL,
+        'enclosure' => '"',
+        'escape_character' => '\\',
+        'contiguous' => false,
+        'input_encoding' => 'UTF-8',
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'extension_detector' => 
+    array (
+      'xlsx' => 'Xlsx',
+      'xlsm' => 'Xlsx',
+      'xltx' => 'Xlsx',
+      'xltm' => 'Xlsx',
+      'xls' => 'Xls',
+      'xlt' => 'Xls',
+      'ods' => 'Ods',
+      'ots' => 'Ods',
+      'slk' => 'Slk',
+      'xml' => 'Xml',
+      'gnumeric' => 'Gnumeric',
+      'htm' => 'Html',
+      'html' => 'Html',
+      'csv' => 'Csv',
+      'tsv' => 'Csv',
+      'pdf' => 'Dompdf',
+    ),
+    'value_binder' => 
+    array (
+      'default' => 'Maatwebsite\\Excel\\DefaultValueBinder',
+    ),
+    'cache' => 
+    array (
+      'driver' => 'memory',
+      'batch' => 
+      array (
+        'memory_limit' => 60000,
+      ),
+      'illuminate' => 
+      array (
+        'store' => NULL,
+      ),
+    ),
+    'transactions' => 
+    array (
+      'handler' => 'db',
+      'db' => 
+      array (
+        'connection' => NULL,
+      ),
+    ),
+    'temporary_files' => 
+    array (
+      'local_path' => 'E:\\Projects\\OnProgress\\cchecking\\storage\\framework/cache/laravel-excel',
+      'remote_disk' => NULL,
+      'remote_prefix' => NULL,
+      'force_resync_remote' => NULL,
+    ),
+  ),
   'flare' => 
   array (
     'key' => NULL,
@@ -835,96 +1039,6 @@
       2 => 'Spatie\\LaravelIgnition\\Recorders\\LogRecorder\\LogRecorder',
       3 => 'Spatie\\LaravelIgnition\\Recorders\\QueryRecorder\\QueryRecorder',
     ),
-  ),
-  'media-library' => 
-  array (
-    'disk_name' => 'public',
-    'max_file_size' => 10485760,
-    'queue_connection_name' => 'sync',
-    'queue_name' => '',
-    'queue_conversions_by_default' => true,
-    'media_model' => 'Spatie\\MediaLibrary\\MediaCollections\\Models\\Media',
-    'temporary_upload_model' => 'Spatie\\MediaLibraryPro\\Models\\TemporaryUpload',
-    'enable_temporary_uploads_session_affinity' => true,
-    'generate_thumbnails_for_temporary_uploads' => true,
-    'file_namer' => 'Spatie\\MediaLibrary\\Support\\FileNamer\\DefaultFileNamer',
-    'path_generator' => 'Spatie\\MediaLibrary\\Support\\PathGenerator\\DefaultPathGenerator',
-    'custom_path_generators' => 
-    array (
-    ),
-    'url_generator' => 'Spatie\\MediaLibrary\\Support\\UrlGenerator\\DefaultUrlGenerator',
-    'moves_media_on_update' => false,
-    'version_urls' => false,
-    'image_optimizers' => 
-    array (
-      'Spatie\\ImageOptimizer\\Optimizers\\Jpegoptim' => 
-      array (
-        0 => '-m85',
-        1 => '--force',
-        2 => '--strip-all',
-        3 => '--all-progressive',
-      ),
-      'Spatie\\ImageOptimizer\\Optimizers\\Pngquant' => 
-      array (
-        0 => '--force',
-      ),
-      'Spatie\\ImageOptimizer\\Optimizers\\Optipng' => 
-      array (
-        0 => '-i0',
-        1 => '-o2',
-        2 => '-quiet',
-      ),
-      'Spatie\\ImageOptimizer\\Optimizers\\Svgo' => 
-      array (
-        0 => '--disable=cleanupIDs',
-      ),
-      'Spatie\\ImageOptimizer\\Optimizers\\Gifsicle' => 
-      array (
-        0 => '-b',
-        1 => '-O3',
-      ),
-      'Spatie\\ImageOptimizer\\Optimizers\\Cwebp' => 
-      array (
-        0 => '-m 6',
-        1 => '-pass 10',
-        2 => '-mt',
-        3 => '-q 90',
-      ),
-    ),
-    'image_generators' => 
-    array (
-      0 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Image',
-      1 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Webp',
-      2 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Pdf',
-      3 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Svg',
-      4 => 'Spatie\\MediaLibrary\\Conversions\\ImageGenerators\\Video',
-    ),
-    'temporary_directory_path' => NULL,
-    'image_driver' => 'gd',
-    'ffmpeg_path' => '/usr/bin/ffmpeg',
-    'ffprobe_path' => '/usr/bin/ffprobe',
-    'jobs' => 
-    array (
-      'perform_conversions' => 'Spatie\\MediaLibrary\\Conversions\\Jobs\\PerformConversionsJob',
-      'generate_responsive_images' => 'Spatie\\MediaLibrary\\ResponsiveImages\\Jobs\\GenerateResponsiveImagesJob',
-    ),
-    'media_downloader' => 'Spatie\\MediaLibrary\\Downloaders\\DefaultDownloader',
-    'remote' => 
-    array (
-      'extra_headers' => 
-      array (
-        'CacheControl' => 'max-age=604800',
-      ),
-    ),
-    'responsive_images' => 
-    array (
-      'width_calculator' => 'Spatie\\MediaLibrary\\ResponsiveImages\\WidthCalculator\\FileSizeOptimizedWidthCalculator',
-      'use_tiny_placeholders' => true,
-      'tiny_placeholder_generator' => 'Spatie\\MediaLibrary\\ResponsiveImages\\TinyPlaceholderGenerator\\Blurred',
-    ),
-    'enable_vapor_uploads' => false,
-    'default_loading_attribute_value' => NULL,
-    'prefix' => '',
   ),
   'datatables' => 
   array (

@@ -32,6 +32,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     Route::resource('tenors', 'TenorsController');
 
+    Route::resource('teams', 'TeamsController');
+
     Route::resource('credit-checks', 'CreditChecksController');
 
     Route::post('credit-checks/download', 'CreditChecksController@download')->name('credit-checks.download');

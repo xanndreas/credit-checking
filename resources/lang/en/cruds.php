@@ -319,5 +319,23 @@ return [
             'deleted_at_helper'         => ' ',
         ],
     ],
+    'team' => [
+        'title'          => 'Teams Information',
+        'title_singular' => 'Teams Information',
+        'fields'         => [
+            'id'                        => 'ID',
+            'id_helper'                 => ' ',
+            'slug'                    => 'Slug',
+            'slug_helper'             => ' ',
+            'owner_name'                => 'Marketing Head',
+            'owner_name_helper'         => ' ',
+            'created_at'                => 'Created at',
+            'created_at_helper'         => ' ',
+            'updated_at'                => 'Updated at',
+            'updated_at_helper'         => ' ',
+            'deleted_at'                => 'Deleted at',
+            'deleted_at_helper'         => ' ',
+        ],
+    ],
 
 ];

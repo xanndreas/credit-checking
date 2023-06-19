@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class User extends Authenticatable
@@ -19,6 +21,19 @@ class User extends Authenticatable
     use SoftDeletes, Notifiable, HasFactory;
 
     public $table = 'users';
+
+    public const TENANT_HIERARCHY = [
+        'tenant_auto_planner' => 1,
+        'tenant_branch_manager' => 2,
+        'tenant_area_manager' => 3,
+        'tenant_marketing_head' => 4,
+    ];
+
+    protected $appends = [
+        'tenants',
+        'tenant_ids',
+        'tenant_level'
+    ];
 
     protected $hidden = [
         'remember_token',
@@ -55,8 +70,57 @@ class User extends Authenticatable
         return $this->roles()->where('id', 1)->exists();
     }
 
-    public function getTenantsAttributes()  {
+    public function getTenantsAttribute()
+    {
+        $tenantChild = [];
+        $tenantChildUser = [];
 
+        foreach (self::TENANT_HIERARCHY as $index => $item) {
+            if (isset(self::TENANT_HIERARCHY[$this->getTenantLevelAttribute()])) {
+                if (self::TENANT_HIERARCHY[$this->getTenantLevelAttribute()] > $item) {
+                    $tenantChild[] = $index;
+                }
+            }
+        }
+
+        $onTenant = Tenant::with('user')->where('user_id', Auth::id())->first();
+        if ($onTenant) {
+            $tenants = Tenant::with('team', 'user')->where('team_id', $onTenant->team_id)->get();
+            foreach ($tenants as $tenant) {
+                $tenant->user->load('roles');
+                foreach ($tenantChild as $item) {
+                    foreach ($tenant->user->roles as $role) {
+                        $role = Role::with('permissions')
+                            ->where('id', $role->id)
+                            ->whereRelation('permissions', 'title', $item)->first();
+
+                        if ($role) {
+                            $tenantChildUser[$tenant->user->id] = $tenant->user;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $tenantChildUser;
+    }
+
+    public function getTenantIdsAttribute(): array
+    {
+        $tenants = $this->getTenantsAttribute();
+        $tenantIds = [];
+        foreach ($tenants as $index => $item) {
+            $tenantIds[] = $index;
+        }
+        return $tenantIds;
+    }
+
+    public function getTenantLevelAttribute(): ?string
+    {
+        return Gate::allows('tenant_auto_planner') ? 'tenant_auto_planner' :
+            (Gate::allows('tenant_branch_manager') ? 'tenant_branch_manager' :
+                (Gate::allows('tenant_branch_manager') ? 'tenant_area_manager' :
+                    (Gate::allows('tenant_branch_manager') ? 'tenant_marketing_head' : null)));
     }
 
     public function __construct(array $attributes = [])
@@ -64,7 +128,7 @@ class User extends Authenticatable
         parent::__construct($attributes);
         self::created(function (self $user) {
             $registrationRole = config('panel.registration_default_role');
-            if (! $user->roles()->get()->contains($registrationRole)) {
+            if (!$user->roles()->get()->contains($registrationRole)) {
                 $user->roles()->attach($registrationRole);
             }
         });
