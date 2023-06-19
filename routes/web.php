@@ -34,6 +34,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     Route::resource('credit-checks', 'CreditChecksController');
 
+    Route::post('credit-checks/download', 'CreditChecksController@download')->name('credit-checks.download');
+
     Route::post('credit-checks/dealer-informations/media', 'CreditChecksController@storeMedia')->name('credit-checks.dealer-informations.storeMedia');
 //    Route::post('dealer-informations/ckmedia', 'DealerInformationController@storeCKEditorImages')->name('dealer-informations.storeCKEditorImages');
 //    Route::resource('dealer-informations', 'DealerInformationController');

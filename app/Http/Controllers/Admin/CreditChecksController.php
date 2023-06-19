@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\CreditCheckingExport;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyDealerInformationRequest;
@@ -16,8 +17,10 @@ use App\Models\DebtorInformation;
 use App\Models\Insurance;
 use App\Models\Product;
 use App\Models\Tenor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -38,9 +41,17 @@ class CreditChecksController extends Controller
             }
 
             $query->select(sprintf('%s.*', (new DealerInformation)->table));
-            $table = Datatables::of($query);
+
+            $table = Datatables::eloquent($query);
+
+            $table->filter(function ($query) {
+                if (request()->has('minDate') && request()->has('maxDate')) {
+                    $query->whereBetween('dealer_informations.created_at', [request()->minDate, request()->maxDate]);
+                }
+            }, true);
 
             $table->addColumn('placeholder', '&nbsp;');
+
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
@@ -169,6 +180,14 @@ class CreditChecksController extends Controller
         return view('admin.creditCheck.index');
     }
 
+    public function download(Request $request) {
+        if ($request->minDate != null && $request->maxDate != null) {
+            return Excel::download(new CreditCheckingExport($request->minDate, $request->maxDate), 'credit-checking.xlsx');
+        }
+
+        return redirect()->back();
+    }
+
     public function create()
     {
         abort_if(Gate::denies('credit_check_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -233,6 +252,7 @@ class CreditChecksController extends Controller
                         'tenors_id',
                         'addm_addb',
                         'effective_rates',
+                        'car_year',
                         'debtor_phone',
                         'remarks',
                     ]

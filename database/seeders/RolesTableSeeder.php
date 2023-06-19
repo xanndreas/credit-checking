@@ -16,7 +16,19 @@ class RolesTableSeeder extends Seeder
             ],
             [
                 'id'    => 2,
-                'title' => 'User',
+                'title' => 'Marketing Head',
+            ],
+            [
+                'id'    => 3,
+                'title' => 'Area Manager',
+            ],
+            [
+                'id'    => 4,
+                'title' => 'Branch Manager',
+            ],
+            [
+                'id'    => 5,
+                'title' => 'Auto Planner',
             ],
         ];
 

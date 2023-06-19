@@ -54,6 +54,7 @@ class DealerInformation extends Model implements HasMedia
         'tenors_id',
         'addm_addb',
         'effective_rates',
+        'car_year',
         'debtor_phone',
         'remarks',
         'debtor_information_id',

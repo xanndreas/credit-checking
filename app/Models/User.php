@@ -49,9 +49,14 @@ class User extends Authenticatable
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function getIsAdminAttribute()
+
+    public function getIsAdminAttribute(): bool
     {
         return $this->roles()->where('id', 1)->exists();
+    }
+
+    public function getTenantsAttributes()  {
+
     }
 
     public function __construct(array $attributes = [])

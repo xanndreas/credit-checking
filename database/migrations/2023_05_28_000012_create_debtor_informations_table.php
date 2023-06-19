@@ -13,6 +13,8 @@ class CreateDebtorInformationsTable extends Migration
             $table->string('debtor_name');
             $table->string('id_type');
             $table->string('id_number');
+            $table->string('shareholders');
+            $table->string('shareholder_id_number');
             $table->string('partner_name')->nullable();
             $table->string('guarantor_id_number')->nullable();
             $table->string('guarantor_name')->nullable();

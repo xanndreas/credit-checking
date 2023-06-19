@@ -1,7 +1,29 @@
 'use strict';
 
-// Datatable (jquery)
 $(function () {
+    let createdRange = document.querySelector('.created-range');
+    let elMinDate = $('.min-date'), elMaxDate = $('.max-date');
+    let minDate, maxDate;
+
+    if (typeof createdRange !== undefined) {
+        createdRange.flatpickr({
+            mode: 'range',
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+
+            onChange: function (dates, dateStr, instance) {
+                if (dates.length === 2) {
+                    minDate = instance.formatDate(dates[0], "Y-m-d H:i:ss");
+                    maxDate = instance.formatDate(dates[1], "Y-m-d H:i:ss");
+
+                    elMaxDate.val(maxDate);
+                    elMinDate.val(minDate);
+
+                    table.draw();
+                }
+            }
+        });
+    }
 
     let dtOverrideGlobals = {
         processing: true,
@@ -9,7 +31,16 @@ $(function () {
         retrieve: true,
         aaSorting: [],
 
-        ajax: "/admin/credit-checks",
+        ajax:
+            {
+                url: "/admin/credit-checks",
+                data: function (d) {
+                    d.minDate = minDate;
+                    d.maxDate = maxDate;
+
+                    console.log(d)
+                }
+            },
         columns: [
             {data: 'placeholder', name: 'placeholder'},
             {data: 'id', name: 'id'},
@@ -132,6 +163,7 @@ $(function () {
     };
     let table = $('.datatable-CreditCheck').DataTable(dtOverrideGlobals);
 
+
     $('.datatable-CreditCheck tbody').on('click', 'td:not(:first-child, :last-child)', (event) => {
         let row = table.row(event.currentTarget).data();
         window.location.href = '/admin/credit-checks/' + row.id;
@@ -145,4 +177,5 @@ $(function () {
     $('.add-new-credit').on('click', function () {
         window.location.href = '/admin/credit-checks/create';
     });
+
 });

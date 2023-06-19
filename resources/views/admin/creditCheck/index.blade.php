@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/flatpickr/flatpickr.css')}}" />
 @endsection
 
 @section('vendor-script')
@@ -21,6 +22,7 @@
     <script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
     <script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
     <script src="{{asset('assets/vendor/libs/select2/select2.js')}}"></script>
+    <script src="{{asset('assets/vendor/libs/flatpickr/flatpickr.js')}}"></script
 @endsection
 
 @section('page-script')
@@ -34,7 +36,24 @@
     <!-- CreditChecks List Table -->
     <div class="card">
         <div class="card-header border-bottom">
-            <h5 class="card-title mb-3">CreditChecks</h5>
+            <h5 class="card-title mb-3">Filter</h5>
+            <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
+                <div class="col-md-10">
+                    <input type="text" class="form-control created-range" placeholder="Select here to Filter Date"/>
+                </div>
+                <div class="col-md-2">
+                    <form action="{{ route('admin.credit-checks.download') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="minDate" class="min-date" value="">
+                        <input type="hidden" name="maxDate" class="max-date" value="">
+
+                        <button type="submit" class="btn btn-primary w-100">Export</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-header border-bottom">
+            <h5 class="card-title mb-3">Credit Checks</h5>
         </div>
         <div class="card-datatable table-responsive">
             <table class="datatables-creditChecks table border-top table-hover datatable-CreditCheck">

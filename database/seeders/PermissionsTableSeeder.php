@@ -294,6 +294,22 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 71,
                 'title' => 'credit_check_access_super',
             ],
+            [
+                'id'    => 72,
+                'title' => 'tenant_marketing_head',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'tenant_area_manager',
+            ],
+            [
+                'id'    => 74,
+                'title' => 'tenant_branch_manager',
+            ],
+            [
+                'id'    => 75,
+                'title' => 'tenant_auto_planner',
+            ],
         ];
 
         Permission::insert($permissions);

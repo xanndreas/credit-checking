@@ -273,6 +273,8 @@ return [
             'dealer_text_helper'        => ' ',
             'brand_text'                => 'Other Brands',
             'brand_text_helper'         => ' ',
+            'car_year'                => 'Car Year',
+            'car_year_helper'         => ' ',
             'down_payment_text'         => 'Other DPs',
             'down_payment_text_helper'  => ' ',
             'brand'                     => 'Brand',

@@ -742,7 +742,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <label class="required"
                                            for="effective_rates">{{ trans('cruds.dealerInformation.fields.effective_rates') }}</label>
                                     <input
@@ -752,6 +752,19 @@
                                     @if($errors->has('effective_rates'))
                                         <div class="invalid-feedback">
                                             {{ $errors->first('effective_rates') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="required"
+                                           for="car_year">{{ trans('cruds.dealerInformation.fields.car_year') }}</label>
+                                    <input
+                                        class="form-control {{ $errors->has('car_year') ? 'is-invalid' : '' }}"
+                                        type="number" name="car_year" id="car_year"
+                                        value="{{ old('car_year', '') }}" step="0.01" required>
+                                    @if($errors->has('car_year'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('car_year') }}
                                         </div>
                                     @endif
                                 </div>

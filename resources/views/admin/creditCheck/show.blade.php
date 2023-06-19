@@ -183,6 +183,14 @@
                         </tr>
                         <tr>
                             <th class="w-25">
+                                {{ trans('cruds.dealerInformation.fields.car_year') }}
+                            </th>
+                            <td>
+                                {{ $credit_check->car_year }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">
                                 {{ trans('cruds.debtorInformation.fields.id_type') }}
                             </th>
                             <td>

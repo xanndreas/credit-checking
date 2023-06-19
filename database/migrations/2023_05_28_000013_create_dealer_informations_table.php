@@ -23,6 +23,7 @@ class CreateDealerInformationsTable extends Migration
             $table->string('dealer_text')->nullable();
             $table->string('brand_text')->nullable();
             $table->string('down_payment_text')->nullable();
+            $table->string('car_year')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
