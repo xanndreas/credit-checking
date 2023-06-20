@@ -139,8 +139,62 @@ $(function () {
             .columns.adjust();
     });
 
+    $('#roles').on('change', function () {
+        let role_id = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: '/admin/users/tenant-parents',
+            data: {
+                "_token": $('meta[name="csrf-token"]').attr('content'),
+                "role_id": role_id
+            },
+            success: function (response) {
+                let selectElement = $('#tenant_parent_id');
+
+                selectElement.empty().trigger('change');
+
+                let select = response.map(function (value, index) {
+                    return {id: value.team.id, text: value.user.name}
+                });
+
+                $.each(select, function(index, option) {
+                    selectElement.append($('<option>', {
+                        value: option.id,
+                        text: option.text
+                    }));
+                });
+
+                selectElement.trigger('change');
+            }
+        });
+    });
+
     $('.datatable-User tbody').on('click', 'td:not(:first-child, :last-child)', (event) => {
         let row = table.row(event.currentTarget).data();
+
+        $.ajax({
+            type: 'POST',
+            url: '/admin/users/tenant-parents',
+            data: {
+                "_token": $('meta[name="csrf-token"]').attr('content'),
+                "role_id": row.role_ids[0]
+            },
+            success: function (response) {
+                var selectElement = $('#tenant_parent_id');
+                let select = response.map(function (value, index) {
+                    return {id: value.team.id, text: value.user.name}
+                });
+
+                $.each(select, function(index, option) {
+                    selectElement.append($('<option>', {
+                        value: option.id,
+                        text: option.text
+                    }));
+                });
+
+                selectElement.trigger('change');
+            }
+        });
 
         $('#submitAddUser').attr('data-id', row.id);
         $('input[name="name"]').val(row.name);
@@ -168,7 +222,7 @@ $(function () {
             savesForm = $(this).parent(),
             hiddenPut = $('input[name="_method"]');
 
-        if (savedIds === ''|| typeof savedIds === 'undefined') {
+        if (savedIds === '' || typeof savedIds === 'undefined') {
             hiddenPut.prop('disabled', true);
             savesForm.attr('action', "/admin/users").submit();
         } else {

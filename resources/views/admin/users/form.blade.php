@@ -63,6 +63,17 @@
                     </div>
                 @endif
             </div>
+            <div class="mb-3">
+                <label class="required" for="tenant_parent_id">Tenants</label>
+                <select class="form-control select2 {{ $errors->has('tenant_parent_id') ? 'is-invalid' : '' }}" name="tenant_parent_id" id="tenant_parent_id" required>
+
+                </select>
+                @if($errors->has('tenant_parent_id'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('tenant_parent_id') }}
+                    </div>
+                @endif
+            </div>
             <a  id="submitAddUser" data-id="" class="btn btn-outline-primary waves-effect text-primary me-sm-3 me-1 ">{{ trans('global.save') }}</a>
             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
         </form>

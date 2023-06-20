@@ -32,6 +32,7 @@ class User extends Authenticatable
     protected $appends = [
         'tenants',
         'tenant_ids',
+        'tenant_parent_ids',
         'tenant_level'
     ];
 
@@ -73,12 +74,16 @@ class User extends Authenticatable
     public function getTenantsAttribute()
     {
         $tenantChild = [];
+        $tenantParent = [];
         $tenantChildUser = [];
+        $tenantParentUser = [];
 
         foreach (self::TENANT_HIERARCHY as $index => $item) {
             if (isset(self::TENANT_HIERARCHY[$this->getTenantLevelAttribute()])) {
                 if (self::TENANT_HIERARCHY[$this->getTenantLevelAttribute()] > $item) {
                     $tenantChild[] = $index;
+                } else {
+                    $tenantParent[] = $index;
                 }
             }
         }
@@ -86,6 +91,7 @@ class User extends Authenticatable
         $onTenant = Tenant::with('user')->where('user_id', Auth::id())->first();
         if ($onTenant) {
             $tenants = Tenant::with('team', 'user')->where('team_id', $onTenant->team_id)->get();
+
             foreach ($tenants as $tenant) {
                 $tenant->user->load('roles');
                 foreach ($tenantChild as $item) {
@@ -99,20 +105,41 @@ class User extends Authenticatable
                         }
                     }
                 }
+
+                foreach ($tenantParent as $parent) {
+                    foreach ($tenant->user->roles as $role) {
+                        $role = Role::with('permissions')
+                            ->where('id', $role->id)
+                            ->whereRelation('permissions', 'title', $parent)->first();
+
+                        if ($role) {
+                            $tenantParentUser[$tenant->user->id] = $tenant->user;
+                        }
+                    }
+                }
             }
         }
 
-        return $tenantChildUser;
+        return [$tenantChildUser, $tenantParentUser];
     }
 
     public function getTenantIdsAttribute(): array
     {
-        $tenants = $this->getTenantsAttribute();
+        $tenants = $this->getTenantsAttribute()[0];
         $tenantIds = [];
         foreach ($tenants as $index => $item) {
             $tenantIds[] = $index;
         }
         return $tenantIds;
+    }
+    public function getTenantParentIdsAttribute(): array
+    {
+        $tenants = $this->getTenantsAttribute()[1];
+        $tenantParentIds = [];
+        foreach ($tenants as $index => $item) {
+            $tenantParentIds[] = $index;
+        }
+        return $tenantParentIds;
     }
 
     public function getTenantLevelAttribute(): ?string
