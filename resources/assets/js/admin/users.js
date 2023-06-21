@@ -192,8 +192,6 @@ $(function () {
                     }));
                 });
 
-                console.log(response)
-
                 selectElement.trigger('change');
             }
         });
