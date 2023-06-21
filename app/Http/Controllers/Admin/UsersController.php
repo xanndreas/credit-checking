@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
+use App\Models\Team;
 use App\Models\Tenant;
 use App\Models\User;
 use Gate;
@@ -119,9 +120,24 @@ class UsersController extends Controller
                 fn($q) => $q->whereIn('title', $tenant_ids))->pluck('id');
 
             $tenants = Tenant::with('user', 'team')->whereHas('user',
-                fn($q) => $q->whereIn('id', $user_ids))->get()->toArray();
+                fn($q) => $q->whereIn('id', $user_ids))->get();
 
-            return response()->json($tenants);
+            if ($tenants->count() == 0 && $tenant->title == 'tenant_area_manager') {
+
+                $customResponse = [];
+                $teams = Team::with('owner')->get();
+
+                foreach ($teams as $team) {
+                    $customResponse[] = [
+                        'user' => $team->owner,
+                        'team' => $team
+                    ];
+                }
+
+                return response()->json($customResponse);
+            } else {
+                return response()->json($tenants->toArray());
+            }
         }
 
         return response()->json();
