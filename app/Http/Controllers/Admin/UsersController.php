@@ -83,12 +83,6 @@ class UsersController extends Controller
         }
 
         $roles = Role::pluck('title', 'id');
-//
-//        $tenant = Tenant::with('user', 'team')->whereRelation('user', 'id', Auth::id())->first();
-//
-//        $tenants = Tenant::with('user', 'team')->whereHas('user',
-//            fn($q) => $q->whereIn('id', Auth::user()->tenant_parent_ids == null ? [] : Auth::user()->tenant_parent_ids))
-//            ->get()->pluck('user.name', 'team.id');
 
         return view('admin.users.index', compact('roles'));
     }

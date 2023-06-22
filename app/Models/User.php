@@ -31,6 +31,7 @@ class User extends Authenticatable
 
     protected $appends = [
         'tenants',
+        'tenant_head',
         'tenant_ids',
         'tenant_parent_ids',
         'tenant_level'
@@ -121,6 +122,16 @@ class User extends Authenticatable
         }
 
         return [$tenantChildUser, $tenantParentUser];
+    }
+
+    public function getTenantHeadAttribute() {
+        $currentIsTeamHead = Team::with('owner')->where('owner_id', Auth::id())->first();
+        if ($currentIsTeamHead) {
+            return Tenant::with('user', 'team')->where('team_id', $currentIsTeamHead->id)
+                ->get()->pluck('user_id')->toArray();
+        }
+
+        return [];
     }
 
     public function getTenantIdsAttribute(): array

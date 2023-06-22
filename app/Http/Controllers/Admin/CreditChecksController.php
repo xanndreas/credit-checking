@@ -39,11 +39,12 @@ class CreditChecksController extends Controller
         abort_if(Gate::denies('credit_check_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
+            $tenantToShow = array_merge(Auth::user()->tenant_ids, Auth::user()->tenant_head);
 
             $query = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information']);
 
             $query->whereHas('debtor_information.auto_planner_information',
-                fn($q) => $q->whereIn('auto_planner_name_id', Auth::user()->tenant_ids == null ? [] : Auth::user()->tenant_ids));
+                fn($q) => $q->whereIn('auto_planner_name_id', $tenantToShow == null ? [] : $tenantToShow));
 
             $query->select(sprintf('%s.*', (new DealerInformation)->table));
 
