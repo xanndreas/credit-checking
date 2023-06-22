@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\DealerInformation;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -25,6 +26,11 @@ class CreditCheckingExport implements FromQuery, WithHeadings, WithMapping
 
         if (Gate::denies('credit_check_access_super')) {
             $dealerInformation->whereRelation('debtor_information.auto_planner_information', 'auto_planner_name_id', auth()->user()->id);
+        } else {
+            $tenantToShow = array_merge(Auth::user()->tenant_ids, Auth::user()->tenant_head);
+
+            $dealerInformation->whereHas('debtor_information.auto_planner_information',
+                fn($q) => $q->whereIn('auto_planner_name_id', $tenantToShow == null ? [] : $tenantToShow));
         }
 
         $dealerInformation
