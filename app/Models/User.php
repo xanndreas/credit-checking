@@ -89,6 +89,10 @@ class User extends Authenticatable
             }
         }
 
+        if ($this->getTenantLevelAttribute() == 'tenant_auto_planner') {
+            $tenantChild[] = 'tenant_auto_planner';
+        }
+
         $onTenant = Tenant::with('user')->where('user_id', Auth::id())->first();
         if ($onTenant) {
             $tenants = Tenant::with('team', 'user')->where('team_id', $onTenant->team_id)->get();
