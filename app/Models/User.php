@@ -157,8 +157,8 @@ class User extends Authenticatable
     {
         return Gate::allows('tenant_auto_planner') ? 'tenant_auto_planner' :
             (Gate::allows('tenant_branch_manager') ? 'tenant_branch_manager' :
-                (Gate::allows('tenant_branch_manager') ? 'tenant_area_manager' :
-                    (Gate::allows('tenant_branch_manager') ? 'tenant_marketing_head' : null)));
+                (Gate::allows('tenant_area_manager') ? 'tenant_area_manager' :
+                    (Gate::allows('tenant_marketing_head') ? 'tenant_marketing_head' : null)));
     }
 
     public function __construct(array $attributes = [])
