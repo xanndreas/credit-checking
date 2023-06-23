@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
             BrandsTableSeeder::class,
-            DealersTableSeeder::class
+            DealersTableSeeder::class,
+            TeamsTableSeeder::class,
+            TenantsTableSeeder::class
         ]);
     }
 }

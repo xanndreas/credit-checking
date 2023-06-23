@@ -95,7 +95,14 @@ class User extends Authenticatable
 
         $onTenant = Tenant::with('user')->where('user_id', Auth::id())->first();
         if ($onTenant) {
-            $tenants = Tenant::with('team', 'user')->where('team_id', $onTenant->team_id)->get();
+            $tenants = Tenant::with('team', 'user')
+                ->where('team_id', $onTenant->team_id);
+
+            if ($this->getTenantLevelAttribute() != 'tenant_auto_planner') {
+                $tenants->where('parent_id', Auth::id());
+            }
+
+            $tenants = $tenants->get();
 
             foreach ($tenants as $tenant) {
                 $tenant->user->load('roles');

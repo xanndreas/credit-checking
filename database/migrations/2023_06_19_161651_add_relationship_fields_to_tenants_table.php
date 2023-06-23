@@ -11,6 +11,8 @@ class AddRelationshipFieldsToTenantsTable extends Migration
         Schema::table('tenants', function (Blueprint $table) {
             $table->unsignedBigInteger('team_id')->nullable();
             $table->foreign('team_id', 'team_fk_8123018')->references('id')->on('teams');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id', 'parent_fk_8123018')->references('id')->on('users');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id', 'user_fk_8541220')->references('id')->on('users');
         });
