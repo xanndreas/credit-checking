@@ -43,8 +43,14 @@ class CreditChecksController extends Controller
 
             $query = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information']);
 
-            $query->whereHas('debtor_information.auto_planner_information',
-                fn($q) => $q->whereIn('auto_planner_name_id', $tenantToShow == null ? [] : $tenantToShow));
+            if (Gate::allows('tenant_auto_planner')) {
+                $query->whereRelation('debtor_information.auto_planner_information', 'auto_planner_name_id', auth()->user()->id);
+            } else if (Gate::allows('credit_check_access_super')) {
+                // no filtering
+            } else {
+                $query->whereHas('debtor_information.auto_planner_information',
+                    fn($q) => $q->whereIn('auto_planner_name_id', $tenantToShow == null ? [] : $tenantToShow));
+            }
 
             $query->select(sprintf('%s.*', (new DealerInformation)->table));
 

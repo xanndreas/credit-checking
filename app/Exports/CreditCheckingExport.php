@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\AutoPlanner;
 use App\Models\DealerInformation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -24,8 +25,10 @@ class CreditCheckingExport implements FromQuery, WithHeadings, WithMapping
     {
         $dealerInformation = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information']);
 
-        if (Gate::denies('credit_check_access_super')) {
+        if (Gate::allows('tenant_auto_planner')) {
             $dealerInformation->whereRelation('debtor_information.auto_planner_information', 'auto_planner_name_id', auth()->user()->id);
+        } else if (Gate::allows('credit_check_access_super')) {
+            // no filtering
         } else {
             $tenantToShow = array_merge(Auth::user()->tenant_ids, Auth::user()->tenant_head);
 
@@ -84,12 +87,27 @@ class CreditCheckingExport implements FromQuery, WithHeadings, WithMapping
 
     public function map($row): array
     {
+        $dealerMedia = null;
+
+        foreach ($row->id_photos as $id_photo) {
+            $dealerMedia .= $id_photo->getUrl() . ', ';
+        }
+        foreach ($row->kk_photos as $kk_photo) {
+            $dealerMedia .= $kk_photo->getUrl() . ', ';
+        }
+        foreach ($row->npwp_photos as $npwp_photo) {
+            $dealerMedia .= $npwp_photo->getUrl() . ', ';
+        }
+        foreach ($row->other_photos as $other_photo) {
+            $dealerMedia .= $other_photo->getUrl() . ', ';
+        }
+
 
         return [
             $row->created_at,
             $row->debtor_information->auto_planner_information->auto_planner_name->email,
             $row->debtor_information->auto_planner_information->auto_planner_name->name,
-            $row->debtor_information->auto_planner_information->auto_planner_name->type,
+            AutoPlanner::TYPE_RADIO[$row->debtor_information->auto_planner_information->type],
             $row->debtor_information->debtor_name,
             $row->debtor_information->id_type,
             $row->debtor_information->id_number,
@@ -114,7 +132,7 @@ class CreditCheckingExport implements FromQuery, WithHeadings, WithMapping
             $row->effective_rates,
             $row->debtor_phone,
             $row->remarks,
-            null,
+            $dealerMedia,
             $row->debtor_information->shareholders,
             $row->debtor_information->shareholder_id_number,
             $row->debtor_information->auto_planner_information->auto_planner_name->name
