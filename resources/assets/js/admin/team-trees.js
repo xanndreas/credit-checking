@@ -1,7 +1,8 @@
-'use strict';
-
-// Datatable (jquery)
 $(function () {
+    'use strict';
+
+
+    var groupColumn = 6;
 
     let dtOverrideGlobals = {
         processing: true,
@@ -9,14 +10,18 @@ $(function () {
         retrieve: true,
         aaSorting: [],
 
-        ajax: "/admin/teams",
+        ajax: window.location.href,
         columns: [
             {data: 'placeholder', name: 'placeholder'},
             {data: 'id', name: 'id'},
-            {data: 'slug', name: 'slug'},
-            {data: 'owner_name', name: 'owner_name'},
-            {data: 'actions', name: 'Actions', orderable: false, searchable: false}
+            {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
+            {data: 'email_verified_at', name: 'email_verified_at'},
+            {data: 'approved', name: 'approved'},
+            {data: 'roles', name: 'roles.title'},
+            {data: 'created_at', name: 'created_at'},
         ],
+
         orderCellsTop: true,
         order: [[2, 'desc']],
         pageLength: 10,
@@ -28,6 +33,26 @@ $(function () {
             '<"col-sm-12 col-md-6"i>' +
             '<"col-sm-12 col-md-6"p>' +
             '>',
+
+        drawCallback: function (settings) {
+            var api = this.api();
+            var rows = api.rows({page: 'current'}).nodes();
+            var last = null;
+
+            api
+                .column(groupColumn, {page: 'current'})
+                .data()
+                .each(function (group, i) {
+                    if (last !== group) {
+                        $(rows)
+                            .eq(i)
+                            .before('<tr class="group"><td colspan="8"><b>' + group + '</b></td></tr>');
+
+                        last = group;
+                    }
+                });
+        },
+
         responsive: {
             details: {
                 display: $.fn.dataTable.Responsive.display.modal({
@@ -105,14 +130,6 @@ $(function () {
                         className: 'dropdown-item',
                     }
                 ]
-            },
-            {
-                text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Add Team</span>',
-                className: 'add-new btn btn-primary',
-                attr: {
-                    'data-bs-toggle': 'offcanvas',
-                    'data-bs-target': '#offcanvasAddTeam'
-                }
             }
         ],
         columnDefs: [
@@ -127,43 +144,8 @@ $(function () {
                 }
             },
         ]
+    }
 
-    };
-    let table = $('.datatable-Team').DataTable(dtOverrideGlobals);
+    let table = $('.datatable-TeamTree').DataTable(dtOverrideGlobals);
 
-    $('a[data-toggle="tab"]').on('shown.bs.tab click', function (e) {
-        $($.fn.dataTable.tables(true)).DataTable()
-            .columns.adjust();
-    });
-
-    $('.datatable-Team tbody').on('click', 'td:not(:first-child, :last-child)', (event) => {
-        let row = table.row(event.currentTarget).data();
-
-        $('#submitAddTeam').attr('data-id', row.id);
-        $('input[name="slug"]').val(row.slug);
-        $('select[name="owner_id"]').val(row.owner_id).trigger('change');
-
-        let canvasSelector = document.getElementById('offcanvasAddTeam')
-        canvasSelector.addEventListener('hidden.bs.offcanvas', function () {
-            $('#addNewTeamForm').trigger("reset");
-            $('#submitAddTeam').attr('data-id', null);
-        });
-
-        let bsOffCanvasAddTeam = new bootstrap.Offcanvas(canvasSelector)
-        bsOffCanvasAddTeam.show();
-    });
-
-    $('#submitAddTeam').on('click', function () {
-        let savedIds = $(this).attr('data-id'),
-            savesForm = $(this).parent(),
-            hiddenPut = $('input[name="_method"]');
-
-        if (savedIds === ''|| typeof savedIds === 'undefined') {
-            hiddenPut.prop('disabled', true);
-            savesForm.attr('action', "/admin/teams").submit();
-        } else {
-            hiddenPut.prop('disabled', false);
-            savesForm.attr('action', "/admin/teams/" + savedIds).submit();
-        }
-    });
-});
+})

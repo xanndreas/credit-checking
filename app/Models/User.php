@@ -34,7 +34,7 @@ class User extends Authenticatable
         'tenant_head',
         'tenant_ids',
         'tenant_parent_ids',
-        'tenant_level'
+        'tenant_level',
     ];
 
     protected $hidden = [

@@ -23,6 +23,7 @@ class Tenant extends Model
         'slug',
         'team_id',
         'user_id',
+        'parent_id',
         'created_at',
         'updated_at',
         'deleted_at',

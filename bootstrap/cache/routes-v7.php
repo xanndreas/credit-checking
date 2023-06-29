@@ -24,7 +24,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::wRJwVaNLfB4hMb8w',
+            '_route' => 'generated::OSXby9ks1pJMUFhL',
           ),
           1 => NULL,
           2 => 
@@ -553,7 +553,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::FBN8tDwDVyVPdIoU',
+            '_route' => 'generated::L3PP4WZsF1K8KJqH',
           ),
           1 => NULL,
           2 => 
@@ -578,7 +578,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::9vNmP4s2n9JWlmAG',
+            '_route' => 'generated::QuaFCjuyFJKnE4yr',
           ),
           1 => NULL,
           2 => 
@@ -615,7 +615,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::gEcAMV0fD3ad4KUD',
+            '_route' => 'generated::0XutGtCK7mpgkqpQ',
           ),
           1 => NULL,
           2 => 
@@ -670,7 +670,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::0DIRzSxQ7fx0ld2D',
+            '_route' => 'generated::K8y7OHAybCCOEvuJ',
           ),
           1 => NULL,
           2 => 
@@ -761,7 +761,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::s7Z46JodUtCoGTef',
+            '_route' => 'generated::E3UTFHS76O5uNdKg',
           ),
           1 => NULL,
           2 => 
@@ -1506,7 +1506,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/_dusk/(?|log(?|in/([^/]++)(?:/([^/]++))?(*:48)|out(?:/([^/]++))?(*:72))|user(?:/([^/]++))?(*:98))|/a(?|pi/v1/(?|p(?|ermissions/([^/]++)(?|(*:146))|roducts/([^/]++)(?|(*:174)))|roles/([^/]++)(?|(*:201))|users/([^/]++)(?|(*:227))|de(?|aler(?|s/([^/]++)(?|(*:261))|\\-informations/([^/]++)(?|(*:296)))|btor\\-informations/([^/]++)(?|(*:336)))|brands/([^/]++)(?|(*:364))|years/([^/]++)(?|(*:390))|insurances/([^/]++)(?|(*:421))|tenors/([^/]++)(?|(*:448))|auto\\-planners/([^/]++)(?|(*:483)))|dmin/(?|p(?|ermissions/([^/]++)(?|(*:527)|/edit(*:540)|(*:548))|roducts/([^/]++)(?|(*:576)|/edit(*:589)|(*:597)))|roles/([^/]++)(?|(*:624)|/edit(*:637)|(*:645))|users/(?|([^/]++)(?|(*:674)|/edit(*:687)|(*:695))|tenant\\-parents(*:719))|dealers/([^/]++)(?|(*:747)|/edit(*:760)|(*:768))|brands/([^/]++)(?|(*:795)|/edit(*:808)|(*:816))|years/([^/]++)(?|(*:842)|/edit(*:855)|(*:863))|insurances/([^/]++)(?|(*:894)|/edit(*:907)|(*:915))|te(?|nors/([^/]++)(?|(*:945)|/edit(*:958)|(*:966))|ams/([^/]++)(?|(*:990)|/edit(*:1003)|(*:1012)))|credit\\-checks/(?|([^/]++)(?|(*:1052)|/edit(*:1066)|(*:1075))|download(*:1093))))|/password/reset/([^/]++)(*:1129))/?$}sDu',
+      0 => '{^(?|/_dusk/(?|log(?|in/([^/]++)(?:/([^/]++))?(*:48)|out(?:/([^/]++))?(*:72))|user(?:/([^/]++))?(*:98))|/a(?|pi/v1/(?|p(?|ermissions/([^/]++)(?|(*:146))|roducts/([^/]++)(?|(*:174)))|roles/([^/]++)(?|(*:201))|users/([^/]++)(?|(*:227))|de(?|aler(?|s/([^/]++)(?|(*:261))|\\-informations/([^/]++)(?|(*:296)))|btor\\-informations/([^/]++)(?|(*:336)))|brands/([^/]++)(?|(*:364))|years/([^/]++)(?|(*:390))|insurances/([^/]++)(?|(*:421))|tenors/([^/]++)(?|(*:448))|auto\\-planners/([^/]++)(?|(*:483)))|dmin/(?|p(?|ermissions/([^/]++)(?|(*:527)|/edit(*:540)|(*:548))|roducts/([^/]++)(?|(*:576)|/edit(*:589)|(*:597)))|roles/([^/]++)(?|(*:624)|/edit(*:637)|(*:645))|users/(?|([^/]++)(?|(*:674)|/edit(*:687)|(*:695))|tenant\\-parents(*:719))|dealers/([^/]++)(?|(*:747)|/edit(*:760)|(*:768))|brands/([^/]++)(?|(*:795)|/edit(*:808)|(*:816))|years/([^/]++)(?|(*:842)|/edit(*:855)|(*:863))|insurances/([^/]++)(?|(*:894)|/edit(*:907)|(*:915))|te(?|nors/([^/]++)(?|(*:945)|/edit(*:958)|(*:966))|ams/(?|([^/]++)(?|(*:993)|/edit(*:1006)|(*:1015))|tree/([^/]++)(*:1038)))|credit\\-checks/(?|([^/]++)(?|(*:1078)|/edit(*:1092)|(*:1101))|download(*:1119))))|/password/reset/([^/]++)(*:1155))/?$}sDu',
     ),
     3 => 
     array (
@@ -3140,7 +3140,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      990 => 
+      993 => 
       array (
         0 => 
         array (
@@ -3163,7 +3163,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1003 => 
+      1006 => 
       array (
         0 => 
         array (
@@ -3186,7 +3186,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1012 => 
+      1015 => 
       array (
         0 => 
         array (
@@ -3228,7 +3228,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1052 => 
+      1038 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.teams.getTreeTeams',
+          ),
+          1 => 
+          array (
+            0 => 'team',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1078 => 
       array (
         0 => 
         array (
@@ -3251,7 +3274,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1066 => 
+      1092 => 
       array (
         0 => 
         array (
@@ -3274,7 +3297,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1075 => 
+      1101 => 
       array (
         0 => 
         array (
@@ -3316,7 +3339,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1093 => 
+      1119 => 
       array (
         0 => 
         array (
@@ -3337,7 +3360,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1129 => 
+      1155 => 
       array (
         0 => 
         array (
@@ -3477,7 +3500,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::wRJwVaNLfB4hMb8w' => 
+    'generated::OSXby9ks1pJMUFhL' => 
     array (
       'methods' => 
       array (
@@ -3498,7 +3521,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 'web',
         ),
-        'as' => 'generated::wRJwVaNLfB4hMb8w',
+        'as' => 'generated::OSXby9ks1pJMUFhL',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5916,7 +5939,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::FBN8tDwDVyVPdIoU' => 
+    'generated::L3PP4WZsF1K8KJqH' => 
     array (
       'methods' => 
       array (
@@ -5942,7 +5965,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::FBN8tDwDVyVPdIoU',
+        'as' => 'generated::L3PP4WZsF1K8KJqH',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5960,7 +5983,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::9vNmP4s2n9JWlmAG' => 
+    'generated::QuaFCjuyFJKnE4yr' => 
     array (
       'methods' => 
       array (
@@ -5986,7 +6009,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::9vNmP4s2n9JWlmAG',
+        'as' => 'generated::QuaFCjuyFJKnE4yr',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6039,7 +6062,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::gEcAMV0fD3ad4KUD' => 
+    'generated::0XutGtCK7mpgkqpQ' => 
     array (
       'methods' => 
       array (
@@ -6059,7 +6082,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::gEcAMV0fD3ad4KUD',
+        'as' => 'generated::0XutGtCK7mpgkqpQ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6148,7 +6171,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::0DIRzSxQ7fx0ld2D' => 
+    'generated::K8y7OHAybCCOEvuJ' => 
     array (
       'methods' => 
       array (
@@ -6168,7 +6191,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::0DIRzSxQ7fx0ld2D',
+        'as' => 'generated::K8y7OHAybCCOEvuJ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6367,7 +6390,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::s7Z46JodUtCoGTef' => 
+    'generated::E3UTFHS76O5uNdKg' => 
     array (
       'methods' => 
       array (
@@ -6387,7 +6410,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::s7Z46JodUtCoGTef',
+        'as' => 'generated::E3UTFHS76O5uNdKg',
       ),
       'fallback' => false,
       'defaults' => 
@@ -9061,6 +9084,44 @@ app('router')->setCompiledRoutes(
         'as' => 'admin.teams.destroy',
         'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@destroy',
         'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@destroy',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.teams.getTreeTeams' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/teams/tree/{team}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\TeamsController@getTreeTeams',
+        'controller' => 'App\\Http\\Controllers\\Admin\\TeamsController@getTreeTeams',
+        'as' => 'admin.teams.getTreeTeams',
         'namespace' => 'App\\Http\\Controllers\\Admin',
         'prefix' => '/admin',
         'where' => 

@@ -36,6 +36,8 @@ class UsersController extends Controller
                 $viewGate = 'user_show';
                 $editGate = 'user_edit';
                 $deleteGate = 'user_delete';
+                $otherDetailGate = 'user_show';
+                $otherDetailUrl = route('admin.users.show', ['user' => $row->id]);
                 $crudRoutePart = 'users';
 
                 return view('_partials.datatablesActions', compact(
@@ -43,6 +45,8 @@ class UsersController extends Controller
                     'editGate',
                     'deleteGate',
                     'crudRoutePart',
+                    'otherDetailGate',
+                    'otherDetailUrl',
                     'row'
                 ));
             });
@@ -193,9 +197,83 @@ class UsersController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-    public function show(User $user)
+    private function getChildTenants($user)
+    {
+        $tenants = [];
+        if ($user) {
+            $firstLevel = Tenant::with('user')->where('parent_id', $user->id)->get();
+            if ($firstLevel->count() > 0) {
+                foreach ($firstLevel as $first) {
+                    $secondLevel =  Tenant::with('user')->where('parent_id', $first->user_id)->get();
+                    if ($secondLevel->count() > 0) {
+                        foreach ($secondLevel as $second) {
+                            $thirdLevel = Tenant::with('user')->where('parent_id', $second->user_id)->get();
+                            if ($thirdLevel->count() > 0) foreach ($thirdLevel as $third) $tenants[] = $third->user_id;
+
+                            $tenants[] = $second->user_id;
+                        }
+                    }
+
+                    $tenants[] = $first->user_id;
+                }
+            }
+        }
+
+        return $tenants;
+    }
+
+    public function show(User $user, Request $request)
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        if ($request->ajax()) {
+            $query = User::with(['roles'])->whereIn('id', self::getChildTenants($user))
+                ->select(sprintf('%s.*', (new User)->table));
+
+            $table = Datatables::of($query);
+
+            $table->addColumn('placeholder', '&nbsp;');
+
+            $table->editColumn('id', function ($row) {
+                return $row->id ? $row->id : '';
+            });
+            $table->editColumn('name', function ($row) {
+                return $row->name ? $row->name : '';
+            });
+            $table->editColumn('email', function ($row) {
+                return $row->email ? $row->email : '';
+            });
+            $table->editColumn('created_at', function ($row) {
+                return $row->created_at ? $row->created_at : '';
+            });
+
+            $table->editColumn('approved', function ($row) {
+                return '<input type="checkbox" disabled ' . ($row->approved ? 'checked' : null) . '>';
+            });
+
+            $table->editColumn('roles', function ($row) {
+                $labels = [];
+                foreach ($row->roles as $role) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $role->title);
+                }
+
+                return implode(' ', $labels);
+            });
+
+            $table->editColumn('role_ids', function ($row) {
+                $labels = [];
+                foreach ($row->roles as $role) {
+                    $labels[] = $role->id;
+                }
+
+                return $labels;
+            });
+
+            $table->rawColumns(['placeholder', 'approved', 'roles']);
+
+            return $table->make(true);
+        }
+
+        return view('admin.users.show');
     }
 
     public function destroy(User $user)
