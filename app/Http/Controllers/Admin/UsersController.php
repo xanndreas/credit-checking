@@ -127,7 +127,7 @@ class UsersController extends Controller
 
                 foreach ($teams as $team) {
                     $customResponse[] = [
-                        'user' => $team->owner,
+                        'user' => $user,
                         'team' => $team
                     ];
                 }
@@ -222,58 +222,85 @@ class UsersController extends Controller
         return $tenants;
     }
 
+
     public function show(User $user, Request $request)
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         if ($request->ajax()) {
-            $query = User::with(['roles'])->whereIn('id', self::getChildTenants($user))
-                ->select(sprintf('%s.*', (new User)->table));
 
-            $table = Datatables::of($query);
+            $teamTree = [[
+                'tt_key' => $user->id,
+                'tt_parent' => 0,
+                'name' => $user->name,
+                'email' => $user->email,
+                'email_verified_at' => $user->email_verified_at,
+                'status' => $user->approved == 1 ? 'Active' : 'Inactive',
+                'roles' => $user->roles->first()->title,
+                'children' => []
+            ]];
 
-            $table->addColumn('placeholder', '&nbsp;');
+            $users = User::with(['roles'])->whereIn('id', self::getChildTenants($user))->get();
+            foreach ($users as $user) {
+                $parent = Tenant::with('user')
+                    ->where('user_id', $user->id)
+                    ->where('parent_id', '!=', null)
+                    ->first();
 
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
-            });
-            $table->editColumn('name', function ($row) {
-                return $row->name ? $row->name : '';
-            });
-            $table->editColumn('email', function ($row) {
-                return $row->email ? $row->email : '';
-            });
-            $table->editColumn('created_at', function ($row) {
-                return $row->created_at ? $row->created_at : '';
-            });
+                $teamTree[] = [
+                    'tt_key' => $user->id,
+                    'tt_parent' => $parent ? $parent->parent_id : 0,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'email_verified_at' => $user->email_verified_at,
+                    'status' => $user->approved == 1 ? 'Active' : 'Inactive',
+                    'roles' => $user->roles->first()->title,
+                    'children' => []
+                ];
+            }
 
-            $table->editColumn('approved', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->approved ? 'checked' : null) . '>';
-            });
+            $teamTreeOrderChild = $this->unflattering($teamTree);
+            $teamTreeFlatten = $this->flattenArray($teamTreeOrderChild);
 
-            $table->editColumn('roles', function ($row) {
-                $labels = [];
-                foreach ($row->roles as $role) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $role->title);
-                }
-
-                return implode(' ', $labels);
-            });
-
-            $table->editColumn('role_ids', function ($row) {
-                $labels = [];
-                foreach ($row->roles as $role) {
-                    $labels[] = $role->id;
-                }
-
-                return $labels;
-            });
-
-            $table->rawColumns(['placeholder', 'approved', 'roles']);
-
-            return $table->make(true);
+            return response()->json($teamTreeFlatten);
         }
 
         return view('admin.users.show');
+    }
+
+    function flattenArray($array, &$result = []) {
+        foreach ($array as $value) {
+            $result[] = array_diff_key($value, array_flip(["children"]));
+
+            if (isset($value['children']) && is_array($value['children'])) {
+                $this->flattenArray($value['children'], $result);
+            }
+        }
+
+        return $result;
+    }
+
+    function unflattering($flatArray): array
+    {
+        $refs = array();
+        $result = array();
+
+        while (count($flatArray) > 0) {
+            for ($i = count($flatArray) - 1; $i >= 0; $i--) {
+                if ($flatArray[$i]["tt_parent"] == 0) {
+                    $result[$flatArray[$i]["tt_key"]] = $flatArray[$i];
+                    $refs[$flatArray[$i]["tt_key"]] = &$result[$flatArray[$i]["tt_key"]];
+                    unset($flatArray[$i]);
+                    $flatArray = array_values($flatArray);
+                } else if (array_key_exists($flatArray[$i]["tt_parent"], $refs)) {
+                    $o = $flatArray[$i];
+                    $refs[$flatArray[$i]["tt_key"]] = $o;
+                    $refs[$flatArray[$i]["tt_parent"]]["children"][] = &$refs[$flatArray[$i]["tt_key"]];
+                    unset($flatArray[$i]);
+                    $flatArray = array_values($flatArray);
+                }
+            }
+        }
+        return $result;
     }
 
     public function destroy(User $user)

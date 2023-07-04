@@ -37,7 +37,7 @@
             <h5 class="card-title mb-3">Owners</h5>
         </div>
         <div class="card-datatable table-responsive">
-            <table class="datatables-users table border-top table-hover datatable-Team">
+            <table class="table border-top table-hover datatable-Team">
                 <thead>
                 <tr>
                     <th width="10">
@@ -59,7 +59,9 @@
                 </thead>
             </table>
         </div>
-        @include('admin/teams/form')
+        @can('team_create')
+            @include('admin/teams/form')
+        @endcan
     </div>
 @endsection
 

@@ -14,8 +14,13 @@
     <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
 @endsection
 
+@section('page-style')
+    <link rel="stylesheet" href="{{asset('assets/css/tree-table.css')}}">
+@endsection
+
 @section('page-script')
     <script src="{{asset('assets/js/admin/user-trees.js')}}"></script>
+    <script src="{{asset('assets/js/tree-tables.js')}}"></script>
 @endsection
 
 @section('content')
@@ -27,14 +32,11 @@
             <table class="table border-top table-hover datatable-UserTree">
                 <thead>
                 <tr>
-                    <th></th>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Email Verified At</th>
                     <th>Status</th>
                     <th>Roles</th>
-                    <th>Registered At</th>
                 </tr>
                 </thead>
             </table>
