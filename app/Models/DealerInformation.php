@@ -16,8 +16,8 @@ class DealerInformation extends Model implements HasMedia
 
     public $table = 'dealer_informations';
 
-    public const dealer_others_id = 9999;
-    public const brand_others_id = 9999;
+    public const dealer_others_id = 1;
+    public const brand_others_id = 1;
 
     protected $appends = [
         'id_photos',

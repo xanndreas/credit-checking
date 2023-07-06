@@ -36,6 +36,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     Route::resource('credit-checks', 'CreditChecksController');
 
+    Route::resource('surveys', 'SurveysController');
+
+    Route::resource('approvals', 'ApprovalsController');
+
+    Route::post('approvals/approve', 'ApprovalsController@approve')->name('approvals.approve');
+
     Route::post('users/tenant-parents', 'UsersController@getTenantParents')->name('users.tenantParents');
 
     Route::post('credit-checks/download', 'CreditChecksController@download')->name('credit-checks.download');

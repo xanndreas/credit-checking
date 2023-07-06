@@ -21,6 +21,7 @@ class Approval extends Model
 
     protected $fillable = [
         'status',
+        'slik',
         'approval_user_id',
         'dealer_information_id',
         'created_at',

@@ -24,7 +24,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::bVLyweBDHxhU7De0',
+            '_route' => 'generated::mXQiKmG6LpvjyKhm',
           ),
           1 => NULL,
           2 => 
@@ -553,7 +553,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Y53J8nuxIelRLutw',
+            '_route' => 'generated::VL784tvhCaxjqzx7',
           ),
           1 => NULL,
           2 => 
@@ -578,7 +578,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::s2VVXAIfLPmgWGHP',
+            '_route' => 'generated::ZqfU7CVZo4G62EX4',
           ),
           1 => NULL,
           2 => 
@@ -615,7 +615,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::paQvPvAlYLCGRoyW',
+            '_route' => 'generated::FRvrUyRBj5o2nq99',
           ),
           1 => NULL,
           2 => 
@@ -670,7 +670,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::13iypzMmJjQUtwrC',
+            '_route' => 'generated::ZYuHLwsCXgOznnuU',
           ),
           1 => NULL,
           2 => 
@@ -761,7 +761,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::0vibslcSgWXs8bc4',
+            '_route' => 'generated::VKU89Lx3B5uiZfHv',
           ),
           1 => NULL,
           2 => 
@@ -1410,6 +1410,118 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/admin/surveys' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.surveys.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.surveys.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/surveys/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.surveys.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/approvals' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.approvals.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.approvals.store',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/approvals/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.approvals.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/admin/credit-checks/dealer-informations/media' => 
       array (
         0 => 
@@ -1506,7 +1618,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/_dusk/(?|log(?|in/([^/]++)(?:/([^/]++))?(*:48)|out(?:/([^/]++))?(*:72))|user(?:/([^/]++))?(*:98))|/a(?|pi/v1/(?|p(?|ermissions/([^/]++)(?|(*:146))|roducts/([^/]++)(?|(*:174)))|roles/([^/]++)(?|(*:201))|users/([^/]++)(?|(*:227))|de(?|aler(?|s/([^/]++)(?|(*:261))|\\-informations/([^/]++)(?|(*:296)))|btor\\-informations/([^/]++)(?|(*:336)))|brands/([^/]++)(?|(*:364))|years/([^/]++)(?|(*:390))|insurances/([^/]++)(?|(*:421))|tenors/([^/]++)(?|(*:448))|auto\\-planners/([^/]++)(?|(*:483)))|dmin/(?|p(?|ermissions/([^/]++)(?|(*:527)|/edit(*:540)|(*:548))|roducts/([^/]++)(?|(*:576)|/edit(*:589)|(*:597)))|roles/([^/]++)(?|(*:624)|/edit(*:637)|(*:645))|users/(?|([^/]++)(?|(*:674)|/edit(*:687)|(*:695))|tenant\\-parents(*:719))|dealers/([^/]++)(?|(*:747)|/edit(*:760)|(*:768))|brands/([^/]++)(?|(*:795)|/edit(*:808)|(*:816))|years/([^/]++)(?|(*:842)|/edit(*:855)|(*:863))|insurances/([^/]++)(?|(*:894)|/edit(*:907)|(*:915))|te(?|nors/([^/]++)(?|(*:945)|/edit(*:958)|(*:966))|ams/([^/]++)(?|(*:990)|/edit(*:1003)|(*:1012)))|credit\\-checks/(?|([^/]++)(?|(*:1052)|/edit(*:1066)|(*:1075))|download(*:1093))))|/password/reset/([^/]++)(*:1129))/?$}sDu',
+      0 => '{^(?|/_dusk/(?|log(?|in/([^/]++)(?:/([^/]++))?(*:48)|out(?:/([^/]++))?(*:72))|user(?:/([^/]++))?(*:98))|/a(?|pi/v1/(?|p(?|ermissions/([^/]++)(?|(*:146))|roducts/([^/]++)(?|(*:174)))|roles/([^/]++)(?|(*:201))|users/([^/]++)(?|(*:227))|de(?|aler(?|s/([^/]++)(?|(*:261))|\\-informations/([^/]++)(?|(*:296)))|btor\\-informations/([^/]++)(?|(*:336)))|brands/([^/]++)(?|(*:364))|years/([^/]++)(?|(*:390))|insurances/([^/]++)(?|(*:421))|tenors/([^/]++)(?|(*:448))|auto\\-planners/([^/]++)(?|(*:483)))|dmin/(?|p(?|ermissions/([^/]++)(?|(*:527)|/edit(*:540)|(*:548))|roducts/([^/]++)(?|(*:576)|/edit(*:589)|(*:597)))|roles/([^/]++)(?|(*:624)|/edit(*:637)|(*:645))|users/(?|([^/]++)(?|(*:674)|/edit(*:687)|(*:695))|tenant\\-parents(*:719))|dealers/([^/]++)(?|(*:747)|/edit(*:760)|(*:768))|brands/([^/]++)(?|(*:795)|/edit(*:808)|(*:816))|years/([^/]++)(?|(*:842)|/edit(*:855)|(*:863))|insurances/([^/]++)(?|(*:894)|/edit(*:907)|(*:915))|te(?|nors/([^/]++)(?|(*:945)|/edit(*:958)|(*:966))|ams/([^/]++)(?|(*:990)|/edit(*:1003)|(*:1012)))|credit\\-checks/(?|([^/]++)(?|(*:1052)|/edit(*:1066)|(*:1075))|download(*:1093))|surveys/([^/]++)(?|(*:1122)|/edit(*:1136)|(*:1145))|approvals/(?|([^/]++)(?|(*:1179)|/edit(*:1193)|(*:1202))|approve(*:1219))))|/password/reset/([^/]++)(*:1255))/?$}sDu',
     ),
     3 => 
     array (
@@ -3337,7 +3449,204 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1129 => 
+      1122 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.surveys.show',
+          ),
+          1 => 
+          array (
+            0 => 'survey',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1136 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.surveys.edit',
+          ),
+          1 => 
+          array (
+            0 => 'survey',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1145 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.surveys.update',
+          ),
+          1 => 
+          array (
+            0 => 'survey',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.surveys.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'survey',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1179 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.approvals.show',
+          ),
+          1 => 
+          array (
+            0 => 'approval',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1193 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.approvals.edit',
+          ),
+          1 => 
+          array (
+            0 => 'approval',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1202 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.approvals.update',
+          ),
+          1 => 
+          array (
+            0 => 'approval',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+            'PATCH' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.approvals.destroy',
+          ),
+          1 => 
+          array (
+            0 => 'approval',
+          ),
+          2 => 
+          array (
+            'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      1219 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.approvals.approve',
+          ),
+          1 => 
+          array (
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      1255 => 
       array (
         0 => 
         array (
@@ -3477,7 +3786,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::bVLyweBDHxhU7De0' => 
+    'generated::mXQiKmG6LpvjyKhm' => 
     array (
       'methods' => 
       array (
@@ -3498,7 +3807,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 'web',
         ),
-        'as' => 'generated::bVLyweBDHxhU7De0',
+        'as' => 'generated::mXQiKmG6LpvjyKhm',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5916,7 +6225,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Y53J8nuxIelRLutw' => 
+    'generated::VL784tvhCaxjqzx7' => 
     array (
       'methods' => 
       array (
@@ -5942,7 +6251,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::Y53J8nuxIelRLutw',
+        'as' => 'generated::VL784tvhCaxjqzx7',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5960,7 +6269,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::s2VVXAIfLPmgWGHP' => 
+    'generated::ZqfU7CVZo4G62EX4' => 
     array (
       'methods' => 
       array (
@@ -5980,13 +6289,13 @@ app('router')->setCompiledRoutes(
     }
 
     return \\redirect()->route(\'admin.home\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005db0000000000000000";}";s:4:"hash";s:44:"GZ/2d3aW60Fuaew8CuiYA/YYsmalg2wYNvk/UQ+RKUI=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005df0000000000000000";}";s:4:"hash";s:44:"AvAkBNbA/HUsMno+0kpdTZ2BFZngXguITfmU3JrHqmk=";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::s2VVXAIfLPmgWGHP',
+        'as' => 'generated::ZqfU7CVZo4G62EX4',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6039,7 +6348,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::paQvPvAlYLCGRoyW' => 
+    'generated::FRvrUyRBj5o2nq99' => 
     array (
       'methods' => 
       array (
@@ -6059,7 +6368,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::paQvPvAlYLCGRoyW',
+        'as' => 'generated::FRvrUyRBj5o2nq99',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6148,7 +6457,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::13iypzMmJjQUtwrC' => 
+    'generated::ZYuHLwsCXgOznnuU' => 
     array (
       'methods' => 
       array (
@@ -6168,7 +6477,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::13iypzMmJjQUtwrC',
+        'as' => 'generated::ZYuHLwsCXgOznnuU',
       ),
       'fallback' => false,
       'defaults' => 
@@ -6367,7 +6676,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::0vibslcSgWXs8bc4' => 
+    'generated::VKU89Lx3B5uiZfHv' => 
     array (
       'methods' => 
       array (
@@ -6387,7 +6696,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::0vibslcSgWXs8bc4',
+        'as' => 'generated::VKU89Lx3B5uiZfHv',
       ),
       'fallback' => false,
       'defaults' => 
@@ -9325,6 +9634,571 @@ app('router')->setCompiledRoutes(
         'as' => 'admin.credit-checks.destroy',
         'uses' => 'App\\Http\\Controllers\\Admin\\CreditChecksController@destroy',
         'controller' => 'App\\Http\\Controllers\\Admin\\CreditChecksController@destroy',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.surveys.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/surveys',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.surveys.index',
+        'uses' => 'App\\Http\\Controllers\\Admin\\SurveysController@index',
+        'controller' => 'App\\Http\\Controllers\\Admin\\SurveysController@index',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.surveys.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/surveys/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.surveys.create',
+        'uses' => 'App\\Http\\Controllers\\Admin\\SurveysController@create',
+        'controller' => 'App\\Http\\Controllers\\Admin\\SurveysController@create',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.surveys.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/surveys',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.surveys.store',
+        'uses' => 'App\\Http\\Controllers\\Admin\\SurveysController@store',
+        'controller' => 'App\\Http\\Controllers\\Admin\\SurveysController@store',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.surveys.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/surveys/{survey}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.surveys.show',
+        'uses' => 'App\\Http\\Controllers\\Admin\\SurveysController@show',
+        'controller' => 'App\\Http\\Controllers\\Admin\\SurveysController@show',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.surveys.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/surveys/{survey}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.surveys.edit',
+        'uses' => 'App\\Http\\Controllers\\Admin\\SurveysController@edit',
+        'controller' => 'App\\Http\\Controllers\\Admin\\SurveysController@edit',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.surveys.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'admin/surveys/{survey}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.surveys.update',
+        'uses' => 'App\\Http\\Controllers\\Admin\\SurveysController@update',
+        'controller' => 'App\\Http\\Controllers\\Admin\\SurveysController@update',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.surveys.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'admin/surveys/{survey}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.surveys.destroy',
+        'uses' => 'App\\Http\\Controllers\\Admin\\SurveysController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Admin\\SurveysController@destroy',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.approvals.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/approvals',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.approvals.index',
+        'uses' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@index',
+        'controller' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@index',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.approvals.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/approvals/create',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.approvals.create',
+        'uses' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@create',
+        'controller' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@create',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.approvals.store' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/approvals',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.approvals.store',
+        'uses' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@store',
+        'controller' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@store',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.approvals.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/approvals/{approval}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.approvals.show',
+        'uses' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@show',
+        'controller' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@show',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.approvals.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/approvals/{approval}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.approvals.edit',
+        'uses' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@edit',
+        'controller' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@edit',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.approvals.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+        1 => 'PATCH',
+      ),
+      'uri' => 'admin/approvals/{approval}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.approvals.update',
+        'uses' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@update',
+        'controller' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@update',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.approvals.destroy' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'DELETE',
+      ),
+      'uri' => 'admin/approvals/{approval}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'as' => 'admin.approvals.destroy',
+        'uses' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@destroy',
+        'controller' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@destroy',
+        'namespace' => 'App\\Http\\Controllers\\Admin',
+        'prefix' => '/admin',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.approvals.approve' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/approvals/approve',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@approve',
+        'controller' => 'App\\Http\\Controllers\\Admin\\ApprovalsController@approve',
+        'as' => 'admin.approvals.approve',
         'namespace' => 'App\\Http\\Controllers\\Admin',
         'prefix' => '/admin',
         'where' => 

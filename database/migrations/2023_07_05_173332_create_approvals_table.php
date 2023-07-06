@@ -11,6 +11,7 @@ class CreateApprovalsTable extends Migration
         Schema::create('approvals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('status')->nullable();
+            $table->string('slik')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

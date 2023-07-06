@@ -14,11 +14,24 @@
             "menuHeader": "cruds.creditChecking.title",
             "permission": "credit_checking_access"
         },
+
         {
             "name": "cruds.creditCheck.title",
             "icon": "menu-icon tf-icons ti ti-user",
             "slug": "admin.credit-checks.index",
             "permission": "credit_check_access"
+        },
+        {
+            "name": "cruds.approval.title",
+            "icon": "menu-icon tf-icons ti ti-check",
+            "slug": "admin.approvals.index",
+            "permission": "approval_access"
+        },
+        {
+            "name": "cruds.survey.title",
+            "icon": "menu-icon tf-icons ti ti-list",
+            "slug": "admin.surveys.index",
+            "permission": "survey_access"
         },
         {
             "menuHeader": "global.user_management",

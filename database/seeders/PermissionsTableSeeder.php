@@ -332,43 +332,55 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 81,
-                'title' => 'credit_checking_approval_delete',
+                'title' => 'approval_delete',
             ],
             [
                 'id'    => 82,
-                'title' => 'credit_checking_approval_edit',
+                'title' => 'approval_edit',
             ],
             [
                 'id'    => 83,
-                'title' => 'credit_checking_approval_create',
+                'title' => 'approval_create',
             ],
             [
                 'id'    => 84,
-                'title' => 'credit_checking_approval_show',
+                'title' => 'approval_show',
             ],
             [
                 'id'    => 85,
-                'title' => 'credit_checking_approval_access',
+                'title' => 'approval_access',
             ],
             [
                 'id'    => 90,
-                'title' => 'credit_checking_survey_delete',
+                'title' => 'survey_delete',
             ],
             [
                 'id'    => 86,
-                'title' => 'credit_checking_survey_edit',
+                'title' => 'survey_edit',
             ],
             [
                 'id'    => 87,
-                'title' => 'credit_checking_survey_create',
+                'title' => 'survey_create',
             ],
             [
                 'id'    => 88,
-                'title' => 'credit_checking_survey_show',
+                'title' => 'survey_show',
             ],
             [
                 'id'    => 89,
-                'title' => 'credit_checking_survey_access',
+                'title' => 'survey_access',
+            ],
+            [
+                'id'    => 91,
+                'title' => 'survey_assign_surveyors',
+            ],
+            [
+                'id'    => 92,
+                'title' => 'approval_approve_request',
+            ],
+            [
+                'id'    => 93,
+                'title' => 'survey_surveyors',
             ],
         ];
 

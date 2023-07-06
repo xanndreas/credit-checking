@@ -11,7 +11,7 @@ class Survey extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public $table = 'approvals';
+    public $table = 'surveys';
 
     protected $dates = [
         'created_at',
