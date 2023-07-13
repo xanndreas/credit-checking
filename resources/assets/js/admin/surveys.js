@@ -16,8 +16,10 @@ $(function () {
             {data: 'domicile_address', name: 'domicile_address'},
             {data: 'office_address', name: 'office_address'},
             {data: 'guarantor_address', name: 'guarantor_address'},
-            {data: 'requester_id', name: 'requester_id'},
-            {data: 'surveyors', name: 'surveyors.name'},
+            {data: 'requester_name', name: 'requester_name', orderable: false, searchable: false},
+            {data: 'office_surveyors', name: 'office_surveyors.name', orderable: false, searchable: false},
+            {data: 'domicile_surveyors', name: 'domicile_surveyors.name', orderable: false, searchable: false},
+            {data: 'guarantor_surveyors', name: 'guarantor_surveyors.name', orderable: false, searchable: false},
             {data: 'actions', name: 'Actions', orderable: false, searchable: false}
         ],
         orderCellsTop: true,
@@ -36,7 +38,7 @@ $(function () {
                 display: $.fn.dataTable.Responsive.display.modal({
                     header: function (row) {
                         var data = row.data();
-                        return 'Details of ' + data['name'];
+                        return 'Details';
                     }
                 }),
                 type: 'column',
@@ -149,14 +151,18 @@ $(function () {
         $('textarea[name="guarantor_address"]').text(row.guarantor_address);
         $('textarea[name="domicile_address"]').text(row.domicile_address);
 
-        $('select[name="surveyors[]"]').val(row.surveyor_ids).trigger('change');
+        $('select[name="office_surveyors[]"]').val(row.office_surveyor_ids).trigger('change');
+        $('select[name="domicile_surveyors[]"]').val(row.domicile_surveyor_ids).trigger('change');
+        $('select[name="guarantor_surveyors[]"]').val(row.guarantor_surveyor_ids).trigger('change');
         $('select[name="approval_id"]').val(row.approval_id).trigger('change');
 
         let canvasSelector = document.getElementById('offcanvasAddSurvey')
         canvasSelector.addEventListener('hidden.bs.offcanvas', function () {
             $('#addNewSurveyForm').trigger("reset");
 
-            $('select[name="surveyors[]"]').val('').trigger('change')
+            $('select[name="office_surveyors[]"]').val('').trigger('change')
+            $('select[name="domicile_surveyors[]"]').val('').trigger('change')
+            $('select[name="guarantor_surveyors[]"]').val('').trigger('change')
             $('select[name="approval_id"]').val('').trigger('change')
             $('#submitAddSurvey').attr('data-id', null);
         });

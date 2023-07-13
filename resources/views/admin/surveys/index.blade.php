@@ -59,7 +59,13 @@
                         {{ trans('cruds.survey.fields.requester_id') }}
                     </th>
                     <th>
-                        Surveyors
+                        Office Surveyors
+                    </th>
+                    <th>
+                        Domicile Surveyors
+                    </th>
+                    <th>
+                        Guarantor Surveyors
                     </th>
                     <th>
                         {{ trans('global.actions') }}

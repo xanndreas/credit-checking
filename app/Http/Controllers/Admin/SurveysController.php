@@ -21,14 +21,17 @@ class SurveysController extends Controller
         abort_if(Gate::denies('survey_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Survey::with(['approval', 'requester', 'surveyors'])
+            $query = Survey::with(['approval', 'requester', 'office_surveyors'])
                 ->select(sprintf('%s.*', (new Survey)->table));
 
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
-            $table->addColumn('surveyor_ids', '&nbsp;');
+            $table->addColumn('office_surveyor_ids', '&nbsp;');
+            $table->addColumn('domicile_surveyor_ids', '&nbsp;');
+            $table->addColumn('guarantor_ids', '&nbsp;');
+            $table->addColumn('requester_name', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
                 $viewGate = 'survey_show';
@@ -60,29 +63,65 @@ class SurveysController extends Controller
             $table->editColumn('approval_id', function ($row) {
                 return $row->approval_id ? $row->approval_id : '';
             });
-            $table->editColumn('requester_id', function ($row) {
-                return $row->requester_id ? $row->requester_id : '';
+            $table->editColumn('requester_name', function ($row) {
+                return $row->requester ? $row->requester->name : '';
             });
 
-            $table->editColumn('surveyors', function ($row) {
+            $table->editColumn('office_surveyors', function ($row) {
                 $labels = [];
-                foreach ($row->surveyors as $surveyor) {
-                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $surveyor->name);
+                foreach ($row->office_surveyors as $office_surveyor) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $office_surveyor->name);
                 }
 
                 return implode(' ', $labels);
             });
 
-            $table->editColumn('surveyor_ids', function ($row) {
+                $table->editColumn('office_surveyor_ids', function ($row) {
                 $labels = [];
-                foreach ($row->surveyors as $surveyor) {
-                    $labels[] = $surveyor->id;
+                foreach ($row->office_surveyors as $office_surveyor) {
+                    $labels[] = $office_surveyor->id;
                 }
 
                 return $labels;
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'surveyors']);
+            $table->editColumn('domicile_surveyors', function ($row) {
+                $labels = [];
+                foreach ($row->domicile_surveyors as $domicile_surveyor) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $domicile_surveyor->name);
+                }
+
+                return implode(' ', $labels);
+            });
+
+            $table->editColumn('domicile_surveyor_ids', function ($row) {
+                $labels = [];
+                foreach ($row->domicile_surveyors as $domicile_surveyor) {
+                    $labels[] = $domicile_surveyor->id;
+                }
+
+                return $labels;
+            });
+
+            $table->editColumn('guarantor_surveyors', function ($row) {
+                $labels = [];
+                foreach ($row->guarantor_surveyors as $guarantor_surveyor) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $guarantor_surveyor->name);
+                }
+
+                return implode(' ', $labels);
+            });
+
+            $table->editColumn('guarantor_surveyor_ids', function ($row) {
+                $labels = [];
+                foreach ($row->guarantor_surveyors as $guarantor_surveyor) {
+                    $labels[] = $guarantor_surveyor->id;
+                }
+
+                return $labels;
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'office_surveyors', 'domicile_surveyors', 'guarantor_surveyors']);
 
             return $table->make(true);
         }
@@ -119,8 +158,16 @@ class SurveysController extends Controller
     {
         $survey = Survey::create($request->all());
 
-        if ($request->has('surveyors')) {
-            $survey->surveyors()->sync($request->input('surveyors', []));
+        if ($request->has('office_surveyors')) {
+            $survey->office_surveyors()->sync($request->input('office_surveyors', []));
+        }
+
+        if ($request->has('domicile_surveyors')) {
+            $survey->domicile_surveyors()->sync($request->input('domicile_surveyors', []));
+        }
+
+        if ($request->has('guarantor_surveyors')) {
+            $survey->guarantor_surveyors()->sync($request->input('guarantor_surveyors', []));
         }
 
         return redirect()->route('admin.surveys.index');
@@ -137,8 +184,16 @@ class SurveysController extends Controller
     {
         $survey->update($request->all());
 
-        if ($request->has('surveyors')) {
-            $survey->surveyors()->sync($request->input('surveyors', []));
+        if ($request->has('office_surveyors')) {
+            $survey->office_surveyors()->sync($request->input('office_surveyors', []));
+        }
+
+        if ($request->has('domicile_surveyors')) {
+            $survey->domicile_surveyors()->sync($request->input('domicile_surveyors', []));
+        }
+
+        if ($request->has('guarantor_surveyors')) {
+            $survey->guarantor_surveyors()->sync($request->input('guarantor_surveyors', []));
         }
 
         return redirect()->route('admin.surveys.index');

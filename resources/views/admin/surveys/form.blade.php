@@ -60,19 +60,49 @@
                 @endif
             </div>
 
-            @can('survey_assign_surveyorss')
+            @can('survey_assign_surveyors')
                 <div class="mb-3">
-                    <label class="required" for="surveyors">Surveyors</label>
-                    <select multiple class="form-control select2 {{ $errors->has('surveyors') ? 'is-invalid' : '' }}"
-                            name="surveyors[]" id="surveyors" required>
+                    <label class="required" for="office_surveyors">Office Surveyors</label>
+                    <select multiple class="form-control select2 {{ $errors->has('office_surveyors') ? 'is-invalid' : '' }}"
+                            name="office_surveyors[]" id="office_surveyors" required>
                         @foreach($surveyor as $id => $val)
                             <option
-                                value="{{ $val->id }}" {{ in_array($val->id, old('surveyors', [])) ? 'selected' : '' }}>{{ $val->name }}</option>
+                                value="{{ $val->id }}" {{ in_array($val->id, old('office_surveyors', [])) ? 'selected' : '' }}>{{ $val->name }}</option>
                         @endforeach
                     </select>
-                    @if($errors->has('surveyors'))
+                    @if($errors->has('office_surveyors'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('surveyors') }}
+                            {{ $errors->first('office_surveyors') }}
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label class="required" for="domicile_surveyors">Surveyors</label>
+                    <select multiple class="form-control select2 {{ $errors->has('domicile_surveyors') ? 'is-invalid' : '' }}"
+                            name="domicile_surveyors[]" id="domicile_surveyors" required>
+                        @foreach($surveyor as $id => $val)
+                            <option
+                                value="{{ $val->id }}" {{ in_array($val->id, old('domicile_surveyors', [])) ? 'selected' : '' }}>{{ $val->name }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('domicile_surveyors'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('domicile_surveyors') }}
+                        </div>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label class="required" for="guarantor_surveyors">Surveyors</label>
+                    <select multiple class="form-control select2 {{ $errors->has('guarantor_surveyors') ? 'is-invalid' : '' }}"
+                            name="guarantor_surveyors[]" id="guarantor_surveyors" required>
+                        @foreach($surveyor as $id => $val)
+                            <option
+                                value="{{ $val->id }}" {{ in_array($val->id, old('guarantor_surveyors', [])) ? 'selected' : '' }}>{{ $val->name }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('guarantor_surveyors'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('guarantor_surveyors') }}
                         </div>
                     @endif
                 </div>

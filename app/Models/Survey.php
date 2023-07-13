@@ -45,8 +45,15 @@ class Survey extends Model
         return $this->belongsTo(User::class, 'requester_id');
     }
 
-    public function surveyors()
-    {
-        return $this->belongsToMany(User::class);
+    public function office_surveyors() {
+        return $this->belongsToMany(User::class, 'survey_user_offices', 'survey_id', 'user_office_id');
+    }
+
+    public function domicile_surveyors() {
+        return $this->belongsToMany(User::class, 'survey_user_domiciles', 'survey_id', 'user_domicile_id');
+    }
+
+    public function guarantor_surveyors() {
+        return $this->belongsToMany(User::class, 'survey_user_guarantors', 'survey_id', 'user_guarantor_id');
     }
 }

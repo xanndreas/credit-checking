@@ -182,14 +182,21 @@ class UsersController extends Controller
             ->where('user_id', $user->id)
             ->first();
 
+        $parentTeam = Tenant::with('user')
+            ->where('user_id', $request->tenant_parent_id)->first();
+
+
         if ($exists) {
             $user->update([
-                'team_id' => $exists->team_id
+                'parent_id' => $exists->tenant_parent_id,
+                'team_id' => $parentTeam->team_id,
             ]);
         } else {
+
             Tenant::create([
                 'slug' => Str::random(7),
-                'team_id' => $request->tenant_parent_id,
+                'parent_id' => $request->tenant_parent_id,
+                'team_id' => $parentTeam->team_id,
                 'user_id' => $user->id
             ]);
         }
@@ -204,7 +211,7 @@ class UsersController extends Controller
             $firstLevel = Tenant::with('user')->where('parent_id', $user->id)->get();
             if ($firstLevel->count() > 0) {
                 foreach ($firstLevel as $first) {
-                    $secondLevel =  Tenant::with('user')->where('parent_id', $first->user_id)->get();
+                    $secondLevel = Tenant::with('user')->where('parent_id', $first->user_id)->get();
                     if ($secondLevel->count() > 0) {
                         foreach ($secondLevel as $second) {
                             $thirdLevel = Tenant::with('user')->where('parent_id', $second->user_id)->get();
@@ -267,7 +274,8 @@ class UsersController extends Controller
         return view('admin.users.show');
     }
 
-    function flattenArray($array, &$result = []) {
+    function flattenArray($array, &$result = [])
+    {
         foreach ($array as $value) {
             $result[] = array_diff_key($value, array_flip(["children"]));
 
