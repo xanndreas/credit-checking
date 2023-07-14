@@ -154,7 +154,7 @@ $(function () {
                 selectElement.empty().trigger('change');
 
                 let select = response.map(function (value, index) {
-                    return {id: value.team.id, text: value.user.name}
+                    return {id: value.user_id, text: value.user.name}
                 });
 
                 $.each(select, function(index, option) {

@@ -177,28 +177,27 @@ class UsersController extends Controller
         $user->update($request->except('tenant_parent_id'));
         $user->roles()->sync($request->input('roles', []));
 
-        $exists = Tenant::with('user', 'team')
-            ->where('team_id', $request->tenant_parent_id)
-            ->where('user_id', $user->id)
-            ->first();
+        if ($request->has('tenant_parent_id')) {
+            $exists = Tenant::with('user', 'team')
+                ->where('user_id', $user->id)
+                ->first();
 
-        $parentTeam = Tenant::with('user')
-            ->where('user_id', $request->tenant_parent_id)->first();
+            $parentTeam = Tenant::with('user')
+                ->where('user_id', $request->tenant_parent_id)->first();
 
-
-        if ($exists) {
-            $user->update([
-                'parent_id' => $exists->tenant_parent_id,
-                'team_id' => $parentTeam->team_id,
-            ]);
-        } else {
-
-            Tenant::create([
-                'slug' => Str::random(7),
-                'parent_id' => $request->tenant_parent_id,
-                'team_id' => $parentTeam->team_id,
-                'user_id' => $user->id
-            ]);
+            if ($exists) {
+                $exists->update([
+                    'parent_id' => $parentTeam->user_id,
+                    'team_id' => $parentTeam->team_id,
+                ]);
+            } else {
+                Tenant::create([
+                    'slug' => Str::random(7),
+                    'parent_id' => $parentTeam->user_id,
+                    'team_id' => $parentTeam->team_id,
+                    'user_id' => $user->id
+                ]);
+            }
         }
 
         return redirect()->route('admin.users.index');
