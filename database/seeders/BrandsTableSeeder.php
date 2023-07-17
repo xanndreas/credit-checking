@@ -15,6 +15,11 @@ class BrandsTableSeeder extends Seeder
                 'name' => 'Other',
                 'aliases' => 'zzother',
             ],
+            [
+                'id'    => 2,
+                'name' => 'Honda',
+                'aliases' => 'honda',
+            ],
         ];
 
         Brand::insert($brands);

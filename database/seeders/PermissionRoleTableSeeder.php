@@ -15,8 +15,11 @@ class PermissionRoleTableSeeder extends Seeder
 
         $mh = [65, 66, 67, 68, 69, 70, 72, 76, 77, 78, 79, 80];
         $am = [66, 67, 68, 69, 70, 73];
-        $bm = [66, 67, 68, 69, 70, 74];
-        $ap = [66, 67, 68, 69, 70, 75];
+        $bm = [66, 67, 68, 69, 70, 74, 84, 85];
+        $ap = [66, 67, 68, 69, 70, 75, 83, 84, 85, 87, 88, 89];
+
+        $sv = [66, 68, 70, 84, 85, 88, 89, 93];
+        $sva = [66, 68, 70, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92];
 
         Role::findOrFail(2)->permissions()->sync($mh);
 
@@ -25,5 +28,9 @@ class PermissionRoleTableSeeder extends Seeder
         Role::findOrFail(4)->permissions()->sync($bm);
 
         Role::findOrFail(5)->permissions()->sync($ap);
+
+        Role::findOrFail(6)->permissions()->sync($sva);
+
+        Role::findOrFail(7)->permissions()->sync($sv);
     }
 }

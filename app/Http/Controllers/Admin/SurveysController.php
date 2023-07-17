@@ -21,7 +21,7 @@ class SurveysController extends Controller
         abort_if(Gate::denies('survey_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Survey::with(['approval', 'requester', 'office_surveyors'])
+            $query = Survey::with(['approval', 'office_surveyors', 'domicile_surveyors', 'guarantor_surveyors'])
                 ->select(sprintf('%s.*', (new Survey)->table));
 
             $table = Datatables::of($query);
@@ -76,7 +76,7 @@ class SurveysController extends Controller
                 return implode(' ', $labels);
             });
 
-                $table->editColumn('office_surveyor_ids', function ($row) {
+            $table->editColumn('office_surveyor_ids', function ($row) {
                 $labels = [];
                 foreach ($row->office_surveyors as $office_surveyor) {
                     $labels[] = $office_surveyor->id;
@@ -141,7 +141,9 @@ class SurveysController extends Controller
 
         $approvals = Approval::with('dealer_information', 'dealer_information.debtor_information')->get()
             ->filter(function ($approval) {
-                return $approval->dealer_information != null;
+                if ($approval->status == 'Approved') return true;
+                elseif ($approval->status == 'Rejected' && $approval->slik != null) return true;
+                else return false;
             });
 
         return view('admin.surveys.index', compact('surveyor', 'approvals'));

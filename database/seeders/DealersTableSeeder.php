@@ -16,6 +16,11 @@ class DealersTableSeeder extends Seeder
                 'name' => 'Other',
                 'aliases' => 'zzother',
             ],
+            [
+                'id'    => 2,
+                'name' => 'Dealer Test',
+                'aliases' => 'dealer-test',
+            ],
         ];
 
         Dealer::insert($dealers);

@@ -1,5 +1,6 @@
 @cannot($approveGate)
-    <span class="badge bg-danger">{{ $approvals ? 'Waiting' : $approvals->status }}</span>
+    <span
+        class="badge {{$approvals ? ($approvals->status == 'Approved' ? 'bg-success' : 'bg-danger') : 'bg-warning'}}">{{ $approvals ? $approvals->status: 'Waiting'  }}</span>
 @endcannot
 
 @can($approveGate)
@@ -21,7 +22,7 @@
             </a>
         </form>
     @else
-        <span class="badge bg-danger">{{ $approvals->status }}</span>
+        <span class="badge {{ $approvals->status == 'Approved' ? 'bg-success' : 'bg-danger' }}">{{ $approvals->status }}</span>
     @endif
 @endcan
 

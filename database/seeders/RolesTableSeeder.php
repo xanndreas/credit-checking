@@ -30,6 +30,14 @@ class RolesTableSeeder extends Seeder
                 'id'    => 5,
                 'title' => 'Auto Planner',
             ],
+            [
+                'id'    => 6,
+                'title' => 'Surveyor Admin',
+            ],
+            [
+                'id'    => 7,
+                'title' => 'Surveyor',
+            ],
         ];
 
         Role::insert($roles);
