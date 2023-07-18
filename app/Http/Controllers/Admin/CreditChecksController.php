@@ -39,7 +39,7 @@ class CreditChecksController extends Controller
         abort_if(Gate::denies('credit_check_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $tenantToShow = array_merge(Auth::user()->tenant_ids, Auth::user()->tenant_head);
+            $tenantToShow = self::getChildTenants(Auth::user());
 
             $query = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information']);
 
@@ -344,5 +344,30 @@ class CreditChecksController extends Controller
         $dealerInformation->delete();
 
         return back();
+    }
+
+    private function getChildTenants($user): array
+    {
+        $tenants = [];
+        if ($user) {
+            $firstLevel = Tenant::with('user')->where('parent_id', $user->id)->get();
+            if ($firstLevel->count() > 0) {
+                foreach ($firstLevel as $first) {
+                    $secondLevel =  Tenant::with('user')->where('parent_id', $first->user_id)->get();
+                    if ($secondLevel->count() > 0) {
+                        foreach ($secondLevel as $second) {
+                            $thirdLevel = Tenant::with('user')->where('parent_id', $second->user_id)->get();
+                            if ($thirdLevel->count() > 0) foreach ($thirdLevel as $third) $tenants[] = $third->user_id;
+
+                            $tenants[] = $second->user_id;
+                        }
+                    }
+
+                    $tenants[] = $first->user_id;
+                }
+            }
+        }
+
+        return $tenants;
     }
 }

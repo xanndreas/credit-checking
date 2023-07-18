@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\AutoPlanner;
 use App\Models\DealerInformation;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Concerns\Exportable;
@@ -15,15 +16,19 @@ class CreditCheckingExport implements FromQuery, WithHeadings, WithMapping
 {
     use Exportable;
 
+    private Carbon|false $maxDate;
+    private Carbon|false $minDate;
+
     public function __construct(string $minDate, string $maxDate)
     {
-        $this->minDate = $minDate;
-        $this->maxDate = $maxDate;
+        $this->minDate = Carbon::createFromFormat('Y-m-d H:i:s', $minDate);;
+        $this->maxDate = Carbon::createFromFormat('Y-m-d H:i:s', $maxDate);;
     }
 
     public function query()
     {
-        $dealerInformation = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information']);
+        $dealerInformation = DealerInformation::with(['dealer', 'product', 'brand', 'insurance', 'tenors', 'debtor_information'])
+            ->whereBetween('created_at', [$this->minDate, $this->maxDate]);
 
         if (Gate::allows('tenant_auto_planner')) {
             $dealerInformation->whereRelation('debtor_information.auto_planner_information', 'auto_planner_name_id', auth()->user()->id);
@@ -35,14 +40,6 @@ class CreditCheckingExport implements FromQuery, WithHeadings, WithMapping
             $dealerInformation->whereHas('debtor_information.auto_planner_information',
                 fn($q) => $q->whereIn('auto_planner_name_id', $tenantToShow == null ? [] : $tenantToShow));
         }
-
-        $dealerInformation
-            ->get()
-            ->filter(function ($query) {
-                if (request()->has('minDate') && request()->has('maxDate')) {
-                    $query->whereBetween('dealer_informations.created_at', [$this->minDate, $this->maxDate]);
-                }
-            });
 
         return $dealerInformation;
     }
