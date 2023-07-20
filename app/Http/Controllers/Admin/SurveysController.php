@@ -21,8 +21,7 @@ class SurveysController extends Controller
         abort_if(Gate::denies('survey_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Survey::with(['approval', 'office_surveyors', 'domicile_surveyors', 'guarantor_surveyors'])
-                ->select(sprintf('%s.*', (new Survey)->table));
+            $query = Survey::query()->select(sprintf('%s.*', (new Survey)->table));
 
             $table = Datatables::of($query);
 
@@ -69,6 +68,8 @@ class SurveysController extends Controller
 
             $table->editColumn('office_surveyors', function ($row) {
                 $labels = [];
+
+                $row->load('office_surveyors');
                 foreach ($row->office_surveyors as $office_surveyor) {
                     $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $office_surveyor->name);
                 }
@@ -78,6 +79,8 @@ class SurveysController extends Controller
 
             $table->editColumn('office_surveyor_ids', function ($row) {
                 $labels = [];
+
+                $row->load('office_surveyors');
                 foreach ($row->office_surveyors as $office_surveyor) {
                     $labels[] = $office_surveyor->id;
                 }
@@ -87,6 +90,8 @@ class SurveysController extends Controller
 
             $table->editColumn('domicile_surveyors', function ($row) {
                 $labels = [];
+
+                $row->load('domicile_surveyors');
                 foreach ($row->domicile_surveyors as $domicile_surveyor) {
                     $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $domicile_surveyor->name);
                 }
@@ -96,6 +101,8 @@ class SurveysController extends Controller
 
             $table->editColumn('domicile_surveyor_ids', function ($row) {
                 $labels = [];
+
+                $row->load('domicile_surveyors');
                 foreach ($row->domicile_surveyors as $domicile_surveyor) {
                     $labels[] = $domicile_surveyor->id;
                 }
@@ -105,6 +112,8 @@ class SurveysController extends Controller
 
             $table->editColumn('guarantor_surveyors', function ($row) {
                 $labels = [];
+
+                $row->load('guarantor_surveyors');
                 foreach ($row->guarantor_surveyors as $guarantor_surveyor) {
                     $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $guarantor_surveyor->name);
                 }
@@ -114,6 +123,8 @@ class SurveysController extends Controller
 
             $table->editColumn('guarantor_surveyor_ids', function ($row) {
                 $labels = [];
+
+                $row->load('guarantor_surveyors');
                 foreach ($row->guarantor_surveyors as $guarantor_surveyor) {
                     $labels[] = $guarantor_surveyor->id;
                 }
