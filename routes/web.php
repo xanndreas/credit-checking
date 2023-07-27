@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -40,6 +43,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     Route::resource('approvals', 'ApprovalsController');
 
+    Route::get('surveys/{survey}/reports/create', 'SurveysController@createReports')->name('surveys.reports.create');
+
+    Route::post('surveys/{survey}/reports/store', 'SurveysController@storeReports')->name('surveys.reports.store');
+
+    Route::post('surveys/{survey}/reports/download', 'SurveysController@downloadReports')->name('surveys.reports.download');
+
     Route::post('approvals/approve', 'ApprovalsController@approve')->name('approvals.approve');
 
     Route::post('users/tenant-parents', 'UsersController@getTenantParents')->name('users.tenantParents');
@@ -47,9 +56,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
     Route::post('credit-checks/download', 'CreditChecksController@download')->name('credit-checks.download');
 
     Route::post('credit-checks/dealer-informations/media', 'CreditChecksController@storeMedia')->name('credit-checks.dealer-informations.storeMedia');
-//    Route::post('dealer-informations/ckmedia', 'DealerInformationController@storeCKEditorImages')->name('dealer-informations.storeCKEditorImages');
-//    Route::resource('dealer-informations', 'DealerInformationController');
 });
+
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'App\Http\Controllers\Auth', 'middleware' => ['auth']], function () {
     // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {

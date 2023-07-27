@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSurveyRequest;
 use App\Http\Requests\UpdateSurveyRequest;
 use App\Models\Approval;
 use App\Models\Survey;
+use App\Models\SurveyReport;
 use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class SurveysController extends Controller
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
+            $table->addColumn('report_actions', '&nbsp;');
             $table->addColumn('office_surveyor_ids', '&nbsp;');
             $table->addColumn('domicile_surveyor_ids', '&nbsp;');
             $table->addColumn('guarantor_ids', '&nbsp;');
@@ -45,6 +47,14 @@ class SurveysController extends Controller
                     'crudRoutePart',
                     'row'
                 ));
+            });
+
+            $table->editColumn('report_actions', function ($row) {
+                $survey = $row;
+                $surveyReports = SurveyReport::with('survey')
+                    ->where('survey_id', $row->id)->first();
+
+                return view('admin.surveys.reports._partials.reportActions', compact('surveyReports', 'survey'));
             });
 
             $table->editColumn('id', function ($row) {
@@ -132,7 +142,7 @@ class SurveysController extends Controller
                 return $labels;
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'office_surveyors', 'domicile_surveyors', 'guarantor_surveyors']);
+            $table->rawColumns(['actions', 'placeholder', 'office_surveyors', 'report_actions', 'domicile_surveyors', 'guarantor_surveyors']);
 
             return $table->make(true);
         }
@@ -226,5 +236,20 @@ class SurveysController extends Controller
         $survey->delete();
 
         return back();
+    }
+
+    public function createReports(Survey $survey)
+    {
+        return view('admin.surveys.reports.form', compact('survey'));
+    }
+
+    public function storeReports(Survey $survey, Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function downloadReports(Survey $survey)
+    {
+
     }
 }

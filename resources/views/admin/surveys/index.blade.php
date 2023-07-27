@@ -53,9 +53,6 @@
                         {{ trans('cruds.survey.fields.office_address') }}
                     </th>
                     <th>
-                        {{ trans('cruds.survey.fields.guarantor_address') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.survey.fields.requester_id') }}
                     </th>
                     <th>
@@ -66,6 +63,9 @@
                     </th>
                     <th>
                         Guarantor Surveyors
+                    </th>
+                    <th>
+                        Reports
                     </th>
                     <th>
                         {{ trans('global.actions') }}

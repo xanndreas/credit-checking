@@ -15,11 +15,11 @@ $(function () {
             {data: 'id', name: 'id'},
             {data: 'domicile_address', name: 'domicile_address'},
             {data: 'office_address', name: 'office_address'},
-            {data: 'guarantor_address', name: 'guarantor_address'},
             {data: 'requester_name', name: 'requester_name', orderable: false, searchable: false},
             {data: 'office_surveyors', name: 'office_surveyors.name', orderable: false, searchable: false},
             {data: 'domicile_surveyors', name: 'domicile_surveyors.name', orderable: false, searchable: false},
             {data: 'guarantor_surveyors', name: 'guarantor_surveyors.name', orderable: false, searchable: false},
+            {data: 'report_actions', name: 'reportsActions', orderable: false, searchable: false},
             {data: 'actions', name: 'Actions', orderable: false, searchable: false}
         ],
         orderCellsTop: true,
@@ -141,9 +141,8 @@ $(function () {
             .columns.adjust();
     });
 
-    $('.datatable-Survey tbody').on('click', 'td:not(:first-child, :last-child)', (event) => {
+    $('.datatable-Survey tbody').on('click', 'td:not(:first-child, :eq(8), :last-child)', (event) => {
         let row = table.row(event.currentTarget).data();
-
 
         $('#submitAddSurvey').attr('data-id', row.id);
         $('input[name="requester_id"]').val(row.requester_id);

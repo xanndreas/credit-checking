@@ -382,6 +382,14 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 93,
                 'title' => 'survey_surveyors',
             ],
+            [
+                'id'    => 94,
+                'title' => 'survey_report_create',
+            ],
+            [
+                'id'    => 95,
+                'title' => 'survey_report_show',
+            ],
         ];
 
         Permission::insert($permissions);
