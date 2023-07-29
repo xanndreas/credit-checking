@@ -141,7 +141,7 @@ $(function () {
             .columns.adjust();
     });
 
-    $('.datatable-Survey tbody').on('click', 'td:not(:first-child, :eq(8), :last-child)', (event) => {
+    $('.datatable-Survey tbody').on('click', 'td:not(:first-child, :nth-child(9n), :last-child)', (event) => {
         let row = table.row(event.currentTarget).data();
 
         $('#submitAddSurvey').attr('data-id', row.id);

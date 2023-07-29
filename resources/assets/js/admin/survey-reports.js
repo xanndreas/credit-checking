@@ -56,4 +56,80 @@ $(function () {
             confirm('Are you sure you want to delete this element?') && $(this).slideUp(e);
         }
     });
+
+    let rowEnvCheck = 2;
+    let colEnvCheck = 1;
+
+    $('.environmental_check-repeater').repeater({
+        show: function () {
+            let fromControl = $(this).find('.form-control, .form-select');
+            let formLabel = $(this).find('.form-label');
+
+            fromControl.each(function (i) {
+                let id = 'form-repeater-' + rowEnvCheck + '-' + colEnvCheck;
+                $(fromControl[i]).attr('id', id);
+                $(formLabel[i]).attr('for', id);
+                colEnvCheck++;
+            });
+
+            rowEnvCheck++;
+
+            $(this).slideDown();
+        },
+
+        hide: function (e) {
+            confirm('Are you sure you want to delete this element?') && $(this).slideUp(e);
+        }
+    });
+
+
+    let rowNote = 2;
+    let colNote = 1;
+
+    $('.note-repeater').repeater({
+        show: function () {
+            let fromControl = $(this).find('.form-control, .form-select');
+            let formLabel = $(this).find('.form-label');
+
+            fromControl.each(function (i) {
+                let id = 'form-repeater-' + rowNote + '-' + colNote;
+                $(fromControl[i]).attr('id', id);
+                $(formLabel[i]).attr('for', id);
+                colNote++;
+            });
+
+            rowNote++;
+
+            $(this).slideDown();
+        },
+
+        hide: function (e) {
+            confirm('Are you sure you want to delete this element?') && $(this).slideUp(e);
+        }
+    });
+
+    let rowIncompleteDocument = 2;
+    let colIncompleteDocument = 1;
+
+    $('.incomplete_document-repeater').repeater({
+        show: function () {
+            let fromControl = $(this).find('.form-control, .form-select');
+            let formLabel = $(this).find('.form-label');
+
+            fromControl.each(function (i) {
+                let id = 'form-repeater-' + rowIncompleteDocument + '-' + colIncompleteDocument;
+                $(fromControl[i]).attr('id', id);
+                $(formLabel[i]).attr('for', id);
+                colIncompleteDocument++;
+            });
+
+            rowIncompleteDocument++;
+
+            $(this).slideDown();
+        },
+
+        hide: function (e) {
+            confirm('Are you sure you want to delete this element?') && $(this).slideUp(e);
+        }
+    });
 });

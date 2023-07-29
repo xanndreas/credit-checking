@@ -45,9 +45,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     Route::get('surveys/{survey}/reports/create', 'SurveysController@createReports')->name('surveys.reports.create');
 
+    Route::get('surveys/{survey}/reports/download', 'SurveysController@downloadReports')->name('surveys.reports.download');
+
     Route::post('surveys/{survey}/reports/store', 'SurveysController@storeReports')->name('surveys.reports.store');
 
-    Route::post('surveys/{survey}/reports/download', 'SurveysController@downloadReports')->name('surveys.reports.download');
+    Route::post('surveys/{survey}/reports/media', 'SurveysController@storeMedia')->name('surveys.reports.storeMedia');
 
     Route::post('approvals/approve', 'ApprovalsController@approve')->name('approvals.approve');
 

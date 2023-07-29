@@ -16,6 +16,7 @@ class CustomPathGenerator implements PathGenerator
             'kk_photos' => '/KK/',
             'npwp_photos' => '/NPWP/',
             'other_photos' => '/Others/',
+            'attachments' => '/Attachments/',
         };
 
         return $mediaPath;
