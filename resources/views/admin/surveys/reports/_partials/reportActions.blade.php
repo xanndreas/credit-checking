@@ -1,8 +1,8 @@
 @can('survey_report_create')
     @if($surveyReports)
-        <button class="btn btn-xs btn-outline-success waves-effect waves-light" disabled>
-            Submitted
-        </button>
+        <a href="{{ route('admin.surveys.reports.download', ['survey' => $surveyReports->survey_id]) }}" class="btn btn-xs btn-warning waves-effect waves-light">
+            Download
+        </a>
     @else
         <a href="{{ route('admin.surveys.reports.create', ['survey' => $survey->id]) }}" class="btn btn-xs btn-outline-warning waves-effect waves-light">
             Write
